@@ -13,7 +13,7 @@ public class CadastroController {
     @Autowired
     private CadastroCRUD metodo;
 
-    @GetMapping("/listarCadastros")
+    @GetMapping("/listar")
     public @ResponseBody List<CadastroModel> listar() {
         return metodo.findAll();
     }
@@ -23,6 +23,30 @@ public class CadastroController {
             (@RequestBody CadastroModel cadastro) {
         return metodo.save(cadastro);
     }
+
+    @RequestMapping(value = "/listar/{id}", method = RequestMethod.GET)
+    public @ResponseBody CadastroModel findByID(@PathVariable int id) {
+        return metodo.findById(id);
+    }
+
+    @RequestMapping(value = "alterar/{id}", method = RequestMethod.PUT)
+    public @ResponseBody CadastroModel alterar(@RequestBody CadastroModel cadastro) {
+        return metodo.save(cadastro);
+    }
+
+    @RequestMapping(value = "/deletar/{id}", method = RequestMethod.DELETE)
+    public @ResponseBody String remover(@PathVariable int id) {
+
+        try {
+            CadastroModel cadastro = findByID(id);
+            this.metodo.delete(cadastro);
+            return "Cadastro deletado com sucesso".formatted();
+        } catch (Exception erro) {
+            return "Erro ao deletar cadastro: " + erro.getMessage();
+        }
+
+    }
+
 }
 
 
