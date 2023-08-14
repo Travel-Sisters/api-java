@@ -29,7 +29,7 @@ public class CadastroController {
         return metodo.findById(id);
     }
 
-    @RequestMapping(value = "cadastro/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/cadastro", method = RequestMethod.PUT)
     public @ResponseBody CadastroModel alterar(@RequestBody CadastroModel cadastro) {
         return metodo.save(cadastro);
     }
