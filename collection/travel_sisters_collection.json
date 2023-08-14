@@ -1,0 +1,302 @@
+{
+	"log": {
+		"version": "1.2",
+		"creator": {
+			"name": "Insomnia REST Client",
+			"version": "insomnia.desktop.app:v2023.4.0"
+		},
+		"entries": [
+			{
+				"startedDateTime": "2023-08-13T23:42:42.564Z",
+				"time": 278.27299999999997,
+				"request": {
+					"method": "PUT",
+					"url": "http://localhost:8080/alterar/1",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "application/json",
+						"text": "{\n\t\"email\" : \"isabella@teste.com\",\n\t\"senha\" : \"123\"\n}",
+						"params": []
+					},
+					"headersSize": -1,
+					"bodySize": -1,
+					"settingEncodeUrl": true
+				},
+				"response": {
+					"status": 200,
+					"statusText": "",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"name": "Date",
+							"value": "Sun, 13 Aug 2023 23:29:26 GMT"
+						}
+					],
+					"content": {
+						"size": 51,
+						"mimeType": "application/json",
+						"text": "{\"id\":2,\"email\":\"isabella@teste.com\",\"senha\":\"123\"}"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 278.27299999999997,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Alterar Cadastro"
+			},
+			{
+				"startedDateTime": "2023-08-13T23:42:42.564Z",
+				"time": 15.861,
+				"request": {
+					"method": "GET",
+					"url": "http://localhost:8080/listar",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [],
+					"queryString": [],
+					"postData": {
+						"mimeType": "",
+						"text": "",
+						"params": []
+					},
+					"headersSize": -1,
+					"bodySize": -1,
+					"settingEncodeUrl": true
+				},
+				"response": {
+					"status": 200,
+					"statusText": "",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"name": "Date",
+							"value": "Sun, 13 Aug 2023 23:33:13 GMT"
+						}
+					],
+					"content": {
+						"size": 2,
+						"mimeType": "application/json",
+						"text": "[]"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 15.861,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Listar cadastros"
+			},
+			{
+				"startedDateTime": "2023-08-13T23:42:42.564Z",
+				"time": 16.832,
+				"request": {
+					"method": "GET",
+					"url": "http://localhost:8080/listar/1",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [],
+					"queryString": [],
+					"postData": {
+						"mimeType": "",
+						"text": "",
+						"params": []
+					},
+					"headersSize": -1,
+					"bodySize": -1,
+					"settingEncodeUrl": true
+				},
+				"response": {
+					"status": 200,
+					"statusText": "",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"name": "Date",
+							"value": "Sun, 13 Aug 2023 23:16:42 GMT"
+						}
+					],
+					"content": {
+						"size": 48,
+						"mimeType": "application/json",
+						"text": "{\"id\":1,\"email\":\"teste@teste.com\",\"senha\":\"123\"}"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 16.832,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Listar por id"
+			},
+			{
+				"startedDateTime": "2023-08-13T23:42:42.564Z",
+				"time": 0,
+				"request": {
+					"method": "POST",
+					"url": "http://localhost:8080/cadastrar",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "application/json",
+						"text": "{\n\t\"email\" : \"teste@teste.com\",\n\t\"senha\" : \"123\"\n}",
+						"params": []
+					},
+					"headersSize": -1,
+					"bodySize": -1,
+					"settingEncodeUrl": true
+				},
+				"response": {
+					"status": 0,
+					"statusText": "",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [],
+					"content": {
+						"size": 0,
+						"mimeType": ""
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 0,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Cadastrar"
+			},
+			{
+				"startedDateTime": "2023-08-13T23:42:42.564Z",
+				"time": 26.123,
+				"request": {
+					"method": "DELETE",
+					"url": "http://localhost:8080/deletar/2",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [],
+					"queryString": [],
+					"postData": {
+						"mimeType": "",
+						"text": "",
+						"params": []
+					},
+					"headersSize": -1,
+					"bodySize": -1,
+					"settingEncodeUrl": true
+				},
+				"response": {
+					"status": 200,
+					"statusText": "",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "text/plain;charset=UTF-8"
+						},
+						{
+							"name": "Content-Length",
+							"value": "29"
+						},
+						{
+							"name": "Date",
+							"value": "Sun, 13 Aug 2023 23:33:09 GMT"
+						}
+					],
+					"content": {
+						"size": 29,
+						"mimeType": "text/plain;charset=UTF-8",
+						"text": "Cadastro deletado com sucesso"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 26.123,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Deletar"
+			}
+		]
+	}
+}
