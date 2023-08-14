@@ -1,302 +1,305 @@
 {
-	"log": {
-		"version": "1.2",
-		"creator": {
-			"name": "Insomnia REST Client",
-			"version": "insomnia.desktop.app:v2023.4.0"
-		},
-		"entries": [
-			{
-				"startedDateTime": "2023-08-13T23:42:42.564Z",
-				"time": 278.27299999999997,
-				"request": {
-					"method": "PUT",
-					"url": "http://localhost:8080/alterar/1",
-					"httpVersion": "HTTP/1.1",
-					"cookies": [],
-					"headers": [
-						{
-							"name": "Content-Type",
-							"value": "application/json"
-						}
-					],
-					"queryString": [],
-					"postData": {
-						"mimeType": "application/json",
-						"text": "{\n\t\"email\" : \"isabella@teste.com\",\n\t\"senha\" : \"123\"\n}",
-						"params": []
-					},
-					"headersSize": -1,
-					"bodySize": -1,
-					"settingEncodeUrl": true
+	"info": {
+		"_postman_id": "363f415f-84a8-4f24-a741-06b235fa2e1e",
+		"name": "Travel-Sisters",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29110457",
+		"_collection_link": "https://winter-eclipse-44505.postman.co/workspace/3b380dae-18f2-4756-8aa6-197ffff7a984/collection/29110457-363f415f-84a8-4f24-a741-06b235fa2e1e?action=share&source=collection_link&creator=29110457"
+	},
+	"item": [
+		{
+			"name": "localhost:8080/alterar/1",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"teste@alterado.com\",\r\n    \"senha\":\"1234\"\r\n}"
 				},
-				"response": {
-					"status": 200,
-					"statusText": "",
-					"httpVersion": "HTTP/1.1",
-					"cookies": [],
-					"headers": [
+				"url": {
+					"raw": "http://localhost:8080/alterar/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"alterar",
+						"4"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "successfully / 200",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseURL1}}/alterar/1",
+							"host": [
+								"{{baseURL1}}"
+							],
+							"path": [
+								"alterar",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
 						{
-							"name": "Content-Type",
+							"key": "Content-Type",
 							"value": "application/json"
 						},
 						{
-							"name": "Transfer-Encoding",
+							"key": "Transfer-Encoding",
 							"value": "chunked"
 						},
 						{
-							"name": "Date",
+							"key": "Date",
 							"value": "Sun, 13 Aug 2023 23:29:26 GMT"
 						}
 					],
-					"content": {
-						"size": 51,
-						"mimeType": "application/json",
-						"text": "{\"id\":2,\"email\":\"isabella@teste.com\",\"senha\":\"123\"}"
-					},
-					"redirectURL": "",
-					"headersSize": -1,
-					"bodySize": -1
-				},
-				"cache": {},
-				"timings": {
-					"blocked": -1,
-					"dns": -1,
-					"connect": -1,
-					"send": 0,
-					"wait": 278.27299999999997,
-					"receive": 0,
-					"ssl": -1
-				},
-				"comment": "Alterar Cadastro"
+					"cookie": [],
+					"body": "{\n \"id\": 2,\n \"email\": \"isabella@teste.com\",\n \"senha\": \"123\"\n}"
+				}
+			]
+		},
+		{
+			"name": "localhost:8080/listar",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/cadastro",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cadastro"
+					]
+				}
 			},
-			{
-				"startedDateTime": "2023-08-13T23:42:42.564Z",
-				"time": 15.861,
-				"request": {
-					"method": "GET",
-					"url": "http://localhost:8080/listar",
-					"httpVersion": "HTTP/1.1",
-					"cookies": [],
-					"headers": [],
-					"queryString": [],
-					"postData": {
-						"mimeType": "",
-						"text": "",
-						"params": []
+			"response": [
+				{
+					"name": "successfully / 200",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL1}}/listar",
+							"host": [
+								"{{baseURL1}}"
+							],
+							"path": [
+								"listar"
+							]
+						}
 					},
-					"headersSize": -1,
-					"bodySize": -1,
-					"settingEncodeUrl": true
-				},
-				"response": {
-					"status": 200,
-					"statusText": "",
-					"httpVersion": "HTTP/1.1",
-					"cookies": [],
-					"headers": [
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
 						{
-							"name": "Content-Type",
+							"key": "Content-Type",
 							"value": "application/json"
 						},
 						{
-							"name": "Transfer-Encoding",
+							"key": "Transfer-Encoding",
 							"value": "chunked"
 						},
 						{
-							"name": "Date",
+							"key": "Date",
 							"value": "Sun, 13 Aug 2023 23:33:13 GMT"
 						}
 					],
-					"content": {
-						"size": 2,
-						"mimeType": "application/json",
-						"text": "[]"
-					},
-					"redirectURL": "",
-					"headersSize": -1,
-					"bodySize": -1
-				},
-				"cache": {},
-				"timings": {
-					"blocked": -1,
-					"dns": -1,
-					"connect": -1,
-					"send": 0,
-					"wait": 15.861,
-					"receive": 0,
-					"ssl": -1
-				},
-				"comment": "Listar cadastros"
+					"cookie": [],
+					"body": "[]"
+				}
+			]
+		},
+		{
+			"name": "localhost:8080/listar/1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/cadastro/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cadastro",
+						"4"
+					]
+				}
 			},
-			{
-				"startedDateTime": "2023-08-13T23:42:42.564Z",
-				"time": 16.832,
-				"request": {
-					"method": "GET",
-					"url": "http://localhost:8080/listar/1",
-					"httpVersion": "HTTP/1.1",
-					"cookies": [],
-					"headers": [],
-					"queryString": [],
-					"postData": {
-						"mimeType": "",
-						"text": "",
-						"params": []
+			"response": [
+				{
+					"name": "successfully / 200",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL1}}/listar/1",
+							"host": [
+								"{{baseURL1}}"
+							],
+							"path": [
+								"listar",
+								"1"
+							]
+						}
 					},
-					"headersSize": -1,
-					"bodySize": -1,
-					"settingEncodeUrl": true
-				},
-				"response": {
-					"status": 200,
-					"statusText": "",
-					"httpVersion": "HTTP/1.1",
-					"cookies": [],
-					"headers": [
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
 						{
-							"name": "Content-Type",
+							"key": "Content-Type",
 							"value": "application/json"
 						},
 						{
-							"name": "Transfer-Encoding",
+							"key": "Transfer-Encoding",
 							"value": "chunked"
 						},
 						{
-							"name": "Date",
+							"key": "Date",
 							"value": "Sun, 13 Aug 2023 23:16:42 GMT"
 						}
 					],
-					"content": {
-						"size": 48,
-						"mimeType": "application/json",
-						"text": "{\"id\":1,\"email\":\"teste@teste.com\",\"senha\":\"123\"}"
-					},
-					"redirectURL": "",
-					"headersSize": -1,
-					"bodySize": -1
+					"cookie": [],
+					"body": "{\n \"id\": 1,\n \"email\": \"teste@teste.com\",\n \"senha\": \"123\"\n}"
+				}
+			]
+		},
+		{
+			"name": "localhost:8080/cadastrar",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"teste2@email.com\",\r\n    \"senha\":\"1234\"\r\n}"
 				},
-				"cache": {},
-				"timings": {
-					"blocked": -1,
-					"dns": -1,
-					"connect": -1,
-					"send": 0,
-					"wait": 16.832,
-					"receive": 0,
-					"ssl": -1
-				},
-				"comment": "Listar por id"
-			},
-			{
-				"startedDateTime": "2023-08-13T23:42:42.564Z",
-				"time": 0,
-				"request": {
-					"method": "POST",
-					"url": "http://localhost:8080/cadastrar",
-					"httpVersion": "HTTP/1.1",
-					"cookies": [],
-					"headers": [
-						{
-							"name": "Content-Type",
-							"value": "application/json"
-						}
+				"url": {
+					"raw": "http://localhost:8080/cadastro",
+					"protocol": "http",
+					"host": [
+						"localhost"
 					],
-					"queryString": [],
-					"postData": {
-						"mimeType": "application/json",
-						"text": "{\n\t\"email\" : \"teste@teste.com\",\n\t\"senha\" : \"123\"\n}",
-						"params": []
-					},
-					"headersSize": -1,
-					"bodySize": -1,
-					"settingEncodeUrl": true
-				},
-				"response": {
-					"status": 0,
-					"statusText": "",
-					"httpVersion": "HTTP/1.1",
-					"cookies": [],
-					"headers": [],
-					"content": {
-						"size": 0,
-						"mimeType": ""
-					},
-					"redirectURL": "",
-					"headersSize": -1,
-					"bodySize": -1
-				},
-				"cache": {},
-				"timings": {
-					"blocked": -1,
-					"dns": -1,
-					"connect": -1,
-					"send": 0,
-					"wait": 0,
-					"receive": 0,
-					"ssl": -1
-				},
-				"comment": "Cadastrar"
+					"port": "8080",
+					"path": [
+						"cadastro"
+					]
+				}
 			},
-			{
-				"startedDateTime": "2023-08-13T23:42:42.564Z",
-				"time": 26.123,
-				"request": {
-					"method": "DELETE",
-					"url": "http://localhost:8080/deletar/2",
-					"httpVersion": "HTTP/1.1",
-					"cookies": [],
-					"headers": [],
-					"queryString": [],
-					"postData": {
-						"mimeType": "",
-						"text": "",
-						"params": []
+			"response": [
+				{
+					"name": "no response code found",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseURL1}}/cadastrar",
+							"host": [
+								"{{baseURL1}}"
+							],
+							"path": [
+								"cadastrar"
+							]
+						}
 					},
-					"headersSize": -1,
-					"bodySize": -1,
-					"settingEncodeUrl": true
-				},
-				"response": {
-					"status": 200,
-					"statusText": "",
-					"httpVersion": "HTTP/1.1",
-					"cookies": [],
-					"headers": [
+					"_postman_previewlanguage": "Text",
+					"header": [],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "localhost:8080/deletar/2",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/cadastro/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cadastro",
+						"3"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "successfully / 200",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL1}}/deletar/2",
+							"host": [
+								"{{baseURL1}}"
+							],
+							"path": [
+								"deletar",
+								"2"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "text",
+					"header": [
 						{
-							"name": "Content-Type",
+							"key": "Content-Type",
 							"value": "text/plain;charset=UTF-8"
 						},
 						{
-							"name": "Content-Length",
+							"key": "Content-Length",
 							"value": "29"
 						},
 						{
-							"name": "Date",
+							"key": "Date",
 							"value": "Sun, 13 Aug 2023 23:33:09 GMT"
 						}
 					],
-					"content": {
-						"size": 29,
-						"mimeType": "text/plain;charset=UTF-8",
-						"text": "Cadastro deletado com sucesso"
-					},
-					"redirectURL": "",
-					"headersSize": -1,
-					"bodySize": -1
-				},
-				"cache": {},
-				"timings": {
-					"blocked": -1,
-					"dns": -1,
-					"connect": -1,
-					"send": 0,
-					"wait": 26.123,
-					"receive": 0,
-					"ssl": -1
-				},
-				"comment": "Deletar"
-			}
-		]
-	}
+					"cookie": [],
+					"body": "text/plain;charset=UTF-8 content type is not supported in the response body"
+				}
+			]
+		}
+	]
 }
