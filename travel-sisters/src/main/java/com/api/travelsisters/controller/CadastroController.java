@@ -13,28 +13,28 @@ public class CadastroController {
     @Autowired
     private CadastroCRUD metodo;
 
-    @GetMapping("/listar")
+    @RequestMapping(value = "/cadastro", method = RequestMethod.GET)
     public @ResponseBody List<CadastroModel> listar() {
         return metodo.findAll();
     }
 
-    @PostMapping("/cadastrar")
+    @RequestMapping(value = "/cadastro", method = RequestMethod.POST)
     public @ResponseBody CadastroModel cadastrar
             (@RequestBody CadastroModel cadastro) {
         return metodo.save(cadastro);
     }
 
-    @RequestMapping(value = "/listar/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/cadastro/{id}", method = RequestMethod.GET)
     public @ResponseBody CadastroModel findByID(@PathVariable int id) {
         return metodo.findById(id);
     }
 
-    @RequestMapping(value = "alterar/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/cadastro", method = RequestMethod.PUT)
     public @ResponseBody CadastroModel alterar(@RequestBody CadastroModel cadastro) {
         return metodo.save(cadastro);
     }
 
-    @RequestMapping(value = "/deletar/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/cadastro/{id}", method = RequestMethod.DELETE)
     public @ResponseBody String remover(@PathVariable int id) {
 
         try {
