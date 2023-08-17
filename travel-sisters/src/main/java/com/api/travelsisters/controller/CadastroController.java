@@ -8,34 +8,36 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/cadastro")
 public class CadastroController {
-    //instanciar o crud
     @Autowired
     private CadastroCRUD metodo;
 
-    @RequestMapping(value = "/cadastro", method = RequestMethod.GET)
+    @GetMapping("/listar")
     public @ResponseBody List<CadastroModel> listar() {
         return metodo.findAll();
     }
 
-    @RequestMapping(value = "/cadastro", method = RequestMethod.POST)
+    @PostMapping("/cadastrar")
     public @ResponseBody CadastroModel cadastrar
             (@RequestBody CadastroModel cadastro) {
         return metodo.save(cadastro);
     }
 
-    @RequestMapping(value = "/cadastro/{id}", method = RequestMethod.GET)
-    public @ResponseBody CadastroModel findByID(@PathVariable int id) {
+    @GetMapping("/buscar/{id}")
+    public @ResponseBody CadastroModel findByID
+            (@PathVariable int id) {
         return metodo.findById(id);
     }
 
-    @RequestMapping(value = "/cadastro", method = RequestMethod.PUT)
-    public @ResponseBody CadastroModel alterar(@RequestBody CadastroModel cadastro) {
+    @PutMapping("/alterar")
+    public @ResponseBody CadastroModel alterar
+            (@RequestBody CadastroModel cadastro) {
         return metodo.save(cadastro);
     }
 
-    @RequestMapping(value = "/cadastro/{id}", method = RequestMethod.DELETE)
-    public @ResponseBody String remover(@PathVariable int id) {
+    @DeleteMapping("/deletar/{id}")
+    public @ResponseBody String deletar(@PathVariable int id) {
 
         try {
             CadastroModel cadastro = findByID(id);
@@ -44,9 +46,7 @@ public class CadastroController {
         } catch (Exception erro) {
             return "Erro ao deletar cadastro: " + erro.getMessage();
         }
-
     }
-
 }
 
 
