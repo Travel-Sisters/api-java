@@ -3,25 +3,28 @@ package com.api.travelsisters.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="cadastro")
-public class CadastroModel {
+@Table(name = "usuario")
+public class UsuarioModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
+    @Column(name = "id")
     private int id;
-    @Column(name="email")
+    @Column(name = "email")
     private String email;
-    @Column(name="senha")
+    @Column(name = "senha")
     private String senha;
+    @Column(name = "cad_passageira")
+    private int cadPassageira;
 
-    public CadastroModel() {
+    public UsuarioModel() {
     }
 
-    public CadastroModel(int id, String email, String senha) {
+    public UsuarioModel(int id, String email, String senha, int cadPassageira) {
         this.id = id;
         this.email = email;
         this.senha = senha;
+        this.cadPassageira = cadPassageira;
     }
 
     public int getId() {
@@ -46,5 +49,13 @@ public class CadastroModel {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public int getCadPassageira() {
+        return cadPassageira;
+    }
+
+    public void setCadPassageira(int cadPassageira) {
+        this.cadPassageira = cadPassageira;
     }
 }
