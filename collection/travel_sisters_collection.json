@@ -7,139 +7,11 @@
 		},
 		"entries": [
 			{
-				"startedDateTime": "2023-09-10T00:56:40.421Z",
-				"time": 298.269,
+				"startedDateTime": "2023-09-18T20:58:45.971Z",
+				"time": 0,
 				"request": {
-					"method": "PUT",
-					"url": "http://localhost:8080/passageiras/",
-					"httpVersion": "HTTP/1.1",
-					"cookies": [],
-					"headers": [
-						{
-							"name": "Content-Type",
-							"value": "application/json"
-						}
-					],
-					"queryString": [],
-					"postData": {
-						"mimeType": "application/json",
-						"text": "{\n\t  \"id\" : \"10\",\n    \"email\":\"alterado@alterado.com\",\n    \"senha\":\"1234\"\n}",
-						"params": []
-					},
-					"headersSize": -1,
-					"bodySize": -1,
-					"settingEncodeUrl": true
-				},
-				"response": {
-					"status": 200,
-					"statusText": "",
-					"httpVersion": "HTTP/1.1",
-					"cookies": [],
-					"headers": [
-						{
-							"name": "Content-Type",
-							"value": "application/json"
-						},
-						{
-							"name": "Transfer-Encoding",
-							"value": "chunked"
-						},
-						{
-							"name": "Date",
-							"value": "Sun, 10 Sep 2023 00:25:12 GMT"
-						}
-					],
-					"content": {
-						"size": 31,
-						"mimeType": "application/json",
-						"text": "{\"id\":1,\"nome\":null,\"cpf\":null}"
-					},
-					"redirectURL": "",
-					"headersSize": -1,
-					"bodySize": -1
-				},
-				"cache": {},
-				"timings": {
-					"blocked": -1,
-					"dns": -1,
-					"connect": -1,
-					"send": 0,
-					"wait": 298.269,
-					"receive": 0,
-					"ssl": -1
-				},
-				"comment": "Alterar"
-			},
-			{
-				"startedDateTime": "2023-09-10T00:56:40.421Z",
-				"time": 18.423,
-				"request": {
-					"method": "PUT",
-					"url": "http://localhost:8080/usuarios/",
-					"httpVersion": "HTTP/1.1",
-					"cookies": [],
-					"headers": [
-						{
-							"name": "Content-Type",
-							"value": "application/json"
-						}
-					],
-					"queryString": [],
-					"postData": {
-						"mimeType": "application/json",
-						"text": "{\n\t  \"id\" : \"10\",\n    \"email\":\"alterado@alterado.com\",\n    \"senha\":\"1234\"\n}",
-						"params": []
-					},
-					"headersSize": -1,
-					"bodySize": -1,
-					"settingEncodeUrl": true
-				},
-				"response": {
-					"status": 200,
-					"statusText": "",
-					"httpVersion": "HTTP/1.1",
-					"cookies": [],
-					"headers": [
-						{
-							"name": "Content-Type",
-							"value": "application/json"
-						},
-						{
-							"name": "Transfer-Encoding",
-							"value": "chunked"
-						},
-						{
-							"name": "Date",
-							"value": "Sat, 09 Sep 2023 23:28:05 GMT"
-						}
-					],
-					"content": {
-						"size": 56,
-						"mimeType": "application/json",
-						"text": "{\"id\":10,\"email\":\"alterado@alterado.com\",\"senha\":\"1234\"}"
-					},
-					"redirectURL": "",
-					"headersSize": -1,
-					"bodySize": -1
-				},
-				"cache": {},
-				"timings": {
-					"blocked": -1,
-					"dns": -1,
-					"connect": -1,
-					"send": 0,
-					"wait": 18.423,
-					"receive": 0,
-					"ssl": -1
-				},
-				"comment": "Alterar"
-			},
-			{
-				"startedDateTime": "2023-09-10T00:56:40.421Z",
-				"time": 191.445,
-				"request": {
-					"method": "GET",
-					"url": "http://localhost:8080/passageiras/",
+					"method": "DELETE",
+					"url": "http://localhost:8080/usuarios/10",
 					"httpVersion": "HTTP/1.1",
 					"cookies": [],
 					"headers": [],
@@ -154,79 +26,14 @@
 					"settingEncodeUrl": true
 				},
 				"response": {
-					"status": 200,
+					"status": 0,
 					"statusText": "",
-					"httpVersion": "HTTP/1.1",
-					"cookies": [],
-					"headers": [
-						{
-							"name": "Content-Type",
-							"value": "application/json"
-						},
-						{
-							"name": "Transfer-Encoding",
-							"value": "chunked"
-						},
-						{
-							"name": "Date",
-							"value": "Sun, 10 Sep 2023 00:25:34 GMT"
-						}
-					],
-					"content": {
-						"size": 33,
-						"mimeType": "application/json",
-						"text": "[{\"id\":1,\"nome\":null,\"cpf\":null}]"
-					},
-					"redirectURL": "",
-					"headersSize": -1,
-					"bodySize": -1
-				},
-				"cache": {},
-				"timings": {
-					"blocked": -1,
-					"dns": -1,
-					"connect": -1,
-					"send": 0,
-					"wait": 191.445,
-					"receive": 0,
-					"ssl": -1
-				},
-				"comment": "Listar"
-			},
-			{
-				"startedDateTime": "2023-09-10T00:56:40.421Z",
-				"time": 12.262,
-				"request": {
-					"method": "GET",
-					"url": "http://localhost:8080/usuarios/",
 					"httpVersion": "HTTP/1.1",
 					"cookies": [],
 					"headers": [],
-					"queryString": [],
-					"postData": {
-						"mimeType": "",
-						"text": "",
-						"params": []
-					},
-					"headersSize": -1,
-					"bodySize": -1,
-					"settingEncodeUrl": true
-				},
-				"response": {
-					"status": 204,
-					"statusText": "",
-					"httpVersion": "HTTP/1.1",
-					"cookies": [],
-					"headers": [
-						{
-							"name": "Date",
-							"value": "Sat, 09 Sep 2023 21:48:57 GMT"
-						}
-					],
 					"content": {
 						"size": 0,
-						"mimeType": "",
-						"text": ""
+						"mimeType": ""
 					},
 					"redirectURL": "",
 					"headersSize": -1,
@@ -238,34 +45,30 @@
 					"dns": -1,
 					"connect": -1,
 					"send": 0,
-					"wait": 12.262,
+					"wait": 0,
 					"receive": 0,
 					"ssl": -1
 				},
-				"comment": "Listar"
+				"comment": "Deletar Usuário"
 			},
 			{
-				"startedDateTime": "2023-09-10T00:56:40.421Z",
-				"time": 31.689000000000004,
+				"startedDateTime": "2023-09-18T20:58:45.971Z",
+				"time": 0,
 				"request": {
-					"method": "POST",
-					"url": "http://localhost:8080/passageiras/",
+					"method": "GET",
+					"url": "http://localhost:8080/usuarios/1",
 					"httpVersion": "HTTP/1.1",
 					"cookies": [],
 					"headers": [
 						{
 							"name": "Content-Type",
 							"value": "application/json"
-						},
-						{
-							"name": "User-Agent",
-							"value": "insomnia/2023.5.8"
 						}
 					],
 					"queryString": [],
 					"postData": {
 						"mimeType": "application/json",
-						"text": "{\n\t\"nome\": \"bella\",\n\t\"cpf\": \"123.456.789-10\"\n}",
+						"text": "",
 						"params": []
 					},
 					"headersSize": -1,
@@ -273,28 +76,14 @@
 					"settingEncodeUrl": true
 				},
 				"response": {
-					"status": 201,
+					"status": 0,
 					"statusText": "",
 					"httpVersion": "HTTP/1.1",
 					"cookies": [],
-					"headers": [
-						{
-							"name": "Content-Type",
-							"value": "application/json"
-						},
-						{
-							"name": "Transfer-Encoding",
-							"value": "chunked"
-						},
-						{
-							"name": "Date",
-							"value": "Sun, 10 Sep 2023 00:44:35 GMT"
-						}
-					],
+					"headers": [],
 					"content": {
-						"size": 46,
-						"mimeType": "application/json",
-						"text": "{\"id\":4,\"nome\":\"bella\",\"cpf\":\"123.456.789-10\"}"
+						"size": 0,
+						"mimeType": ""
 					},
 					"redirectURL": "",
 					"headersSize": -1,
@@ -306,15 +95,15 @@
 					"dns": -1,
 					"connect": -1,
 					"send": 0,
-					"wait": 31.689000000000004,
+					"wait": 0,
 					"receive": 0,
 					"ssl": -1
 				},
-				"comment": "Cadastro Passageira"
+				"comment": "Buscar Por Id Usuário"
 			},
 			{
-				"startedDateTime": "2023-09-10T00:56:40.421Z",
-				"time": 22.561999999999998,
+				"startedDateTime": "2023-09-18T20:58:45.971Z",
+				"time": 19.372,
 				"request": {
 					"method": "POST",
 					"url": "http://localhost:8080/usuarios/",
@@ -338,7 +127,7 @@
 					],
 					"postData": {
 						"mimeType": "application/json",
-						"text": "{\n\t\"email\": \"teste@email.com\",\n\t\"senha\": \"1234\",\n\t\"cadPassageira\": 4\n}",
+						"text": "{\n\t\"nome\":\"teste\",\n\t\"cpf\":\"123456885\",\n\t\"email\": \"teste@email.com\",\n\t\"senha\": \"1234\",\n\t\"cadPassageira\": 4\n}",
 						"params": []
 					},
 					"headersSize": -1,
@@ -361,13 +150,13 @@
 						},
 						{
 							"name": "Date",
-							"value": "Sun, 10 Sep 2023 00:46:23 GMT"
+							"value": "Mon, 18 Sep 2023 20:49:20 GMT"
 						}
 					],
 					"content": {
-						"size": 68,
+						"size": 82,
 						"mimeType": "application/json",
-						"text": "{\"id\":13,\"email\":\"teste@email.com\",\"senha\":\"1234\",\"cadPassageira\":4}"
+						"text": "{\"id\":6,\"nome\":\"teste\",\"cpf\":\"123456885\",\"email\":\"teste@email.com\",\"senha\":\"1234\"}"
 					},
 					"redirectURL": "",
 					"headersSize": -1,
@@ -379,29 +168,24 @@
 					"dns": -1,
 					"connect": -1,
 					"send": 0,
-					"wait": 22.561999999999998,
+					"wait": 19.372,
 					"receive": 0,
 					"ssl": -1
 				},
 				"comment": "Cadastrar Usuário"
 			},
 			{
-				"startedDateTime": "2023-09-10T00:56:40.421Z",
-				"time": 23.54,
+				"startedDateTime": "2023-09-18T20:58:45.971Z",
+				"time": 654.706,
 				"request": {
 					"method": "GET",
-					"url": "http://localhost:8080/passageiras/1",
+					"url": "http://localhost:8080/usuarios/",
 					"httpVersion": "HTTP/1.1",
 					"cookies": [],
-					"headers": [
-						{
-							"name": "Content-Type",
-							"value": "application/json"
-						}
-					],
+					"headers": [],
 					"queryString": [],
 					"postData": {
-						"mimeType": "application/json",
+						"mimeType": "",
 						"text": "",
 						"params": []
 					},
@@ -425,13 +209,13 @@
 						},
 						{
 							"name": "Date",
-							"value": "Sun, 10 Sep 2023 00:27:19 GMT"
+							"value": "Mon, 18 Sep 2023 20:53:44 GMT"
 						}
 					],
 					"content": {
-						"size": 31,
+						"size": 333,
 						"mimeType": "application/json",
-						"text": "{\"id\":1,\"nome\":null,\"cpf\":null}"
+						"text": "[{\"id\":1,\"nome\":\"teste\",\"cpf\":\"123456789\",\"email\":\"teste@email.com\",\"senha\":\"1234\"},{\"id\":3,\"nome\":\"teste\",\"cpf\":\"123456781\",\"email\":\"teste@email.com\",\"senha\":\"1234\"},{\"id\":5,\"nome\":\"teste\",\"cpf\":\"123456785\",\"email\":\"teste@email.com\",\"senha\":\"1234\"},{\"id\":6,\"nome\":\"teste\",\"cpf\":\"123456885\",\"email\":\"teste@email.com\",\"senha\":\"1234\"}]"
 					},
 					"redirectURL": "",
 					"headersSize": -1,
@@ -443,18 +227,18 @@
 					"dns": -1,
 					"connect": -1,
 					"send": 0,
-					"wait": 23.54,
+					"wait": 654.706,
 					"receive": 0,
 					"ssl": -1
 				},
-				"comment": "Buscar Por Id"
+				"comment": "Listar Usuários"
 			},
 			{
-				"startedDateTime": "2023-09-10T00:56:40.421Z",
-				"time": 82.842,
+				"startedDateTime": "2023-09-18T20:58:45.971Z",
+				"time": 20.264999999999997,
 				"request": {
-					"method": "GET",
-					"url": "http://localhost:8080/usuarios/1",
+					"method": "PUT",
+					"url": "http://localhost:8080/usuarios/",
 					"httpVersion": "HTTP/1.1",
 					"cookies": [],
 					"headers": [
@@ -466,7 +250,7 @@
 					"queryString": [],
 					"postData": {
 						"mimeType": "application/json",
-						"text": "",
+						"text": "{\n\t\"id\": \"1\",\n\t\"nome\": \"teste\",\n\t\"cpf\": \"321654987\",\n\t\"email\": \"teste@email.com\",\n\t\"senha\": \"1234\",\n\t\"cadPassageira\": 4\n}",
 						"params": []
 					},
 					"headersSize": -1,
@@ -489,13 +273,13 @@
 						},
 						{
 							"name": "Date",
-							"value": "Sun, 10 Sep 2023 00:41:09 GMT"
+							"value": "Mon, 18 Sep 2023 20:55:47 GMT"
 						}
 					],
 					"content": {
-						"size": 67,
+						"size": 82,
 						"mimeType": "application/json",
-						"text": "{\"id\":1,\"email\":\"teste@email.com\",\"senha\":\"1234\",\"cadPassageira\":0}"
+						"text": "{\"id\":1,\"nome\":\"teste\",\"cpf\":\"321654987\",\"email\":\"teste@email.com\",\"senha\":\"1234\"}"
 					},
 					"redirectURL": "",
 					"headersSize": -1,
@@ -507,121 +291,11 @@
 					"dns": -1,
 					"connect": -1,
 					"send": 0,
-					"wait": 82.842,
+					"wait": 20.264999999999997,
 					"receive": 0,
 					"ssl": -1
 				},
-				"comment": "Buscar Por Id"
-			},
-			{
-				"startedDateTime": "2023-09-10T00:56:40.421Z",
-				"time": 24.958000000000002,
-				"request": {
-					"method": "DELETE",
-					"url": "http://localhost:8080/passageiras/1",
-					"httpVersion": "HTTP/1.1",
-					"cookies": [],
-					"headers": [],
-					"queryString": [],
-					"postData": {
-						"mimeType": "",
-						"text": "",
-						"params": []
-					},
-					"headersSize": -1,
-					"bodySize": -1,
-					"settingEncodeUrl": true
-				},
-				"response": {
-					"status": 200,
-					"statusText": "",
-					"httpVersion": "HTTP/1.1",
-					"cookies": [],
-					"headers": [
-						{
-							"name": "Content-Length",
-							"value": "0"
-						},
-						{
-							"name": "Date",
-							"value": "Sun, 10 Sep 2023 00:27:34 GMT"
-						}
-					],
-					"content": {
-						"size": 0,
-						"mimeType": "",
-						"text": ""
-					},
-					"redirectURL": "",
-					"headersSize": -1,
-					"bodySize": -1
-				},
-				"cache": {},
-				"timings": {
-					"blocked": -1,
-					"dns": -1,
-					"connect": -1,
-					"send": 0,
-					"wait": 24.958000000000002,
-					"receive": 0,
-					"ssl": -1
-				},
-				"comment": "Deletar"
-			},
-			{
-				"startedDateTime": "2023-09-10T00:56:40.421Z",
-				"time": 663.014,
-				"request": {
-					"method": "DELETE",
-					"url": "http://localhost:8080/usuarios/10",
-					"httpVersion": "HTTP/1.1",
-					"cookies": [],
-					"headers": [],
-					"queryString": [],
-					"postData": {
-						"mimeType": "",
-						"text": "",
-						"params": []
-					},
-					"headersSize": -1,
-					"bodySize": -1,
-					"settingEncodeUrl": true
-				},
-				"response": {
-					"status": 200,
-					"statusText": "",
-					"httpVersion": "HTTP/1.1",
-					"cookies": [],
-					"headers": [
-						{
-							"name": "Content-Length",
-							"value": "0"
-						},
-						{
-							"name": "Date",
-							"value": "Sun, 10 Sep 2023 00:23:37 GMT"
-						}
-					],
-					"content": {
-						"size": 0,
-						"mimeType": "",
-						"text": ""
-					},
-					"redirectURL": "",
-					"headersSize": -1,
-					"bodySize": -1
-				},
-				"cache": {},
-				"timings": {
-					"blocked": -1,
-					"dns": -1,
-					"connect": -1,
-					"send": 0,
-					"wait": 663.014,
-					"receive": 0,
-					"ssl": -1
-				},
-				"comment": "Deletar"
+				"comment": "Alterar Usuário"
 			}
 		]
 	}

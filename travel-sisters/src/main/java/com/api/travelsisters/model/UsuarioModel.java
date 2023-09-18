@@ -3,28 +3,31 @@ package com.api.travelsisters.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "usuario")
+@Table(name = "usuario", uniqueConstraints = @UniqueConstraint(columnNames = {"cpf", "email"} ))
 public class UsuarioModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-    @Column(name = "email")
+    @Column(name = "nome" , length = 100)
+    private String nome;
+    @Column(name = "cpf" , length = 11)
+    private String cpf;
+    @Column(name = "email", length = 100)
     private String email;
-    @Column(name = "senha")
+    @Column(name = "senha", length = 256)
     private String senha;
-    @Column(name = "cad_passageira")
-    private int cadPassageira;
 
     public UsuarioModel() {
     }
 
-    public UsuarioModel(int id, String email, String senha, int cadPassageira) {
+    public UsuarioModel(int id, String nome, String cpf, String email, String senha) {
         this.id = id;
+        this.nome = nome;
+        this.cpf = cpf;
         this.email = email;
         this.senha = senha;
-        this.cadPassageira = cadPassageira;
     }
 
     public int getId() {
@@ -33,6 +36,22 @@ public class UsuarioModel {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
     public String getEmail() {
@@ -49,13 +68,5 @@ public class UsuarioModel {
 
     public void setSenha(String senha) {
         this.senha = senha;
-    }
-
-    public int getCadPassageira() {
-        return cadPassageira;
-    }
-
-    public void setCadPassageira(int cadPassageira) {
-        this.cadPassageira = cadPassageira;
     }
 }
