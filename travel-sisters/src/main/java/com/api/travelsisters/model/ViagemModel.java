@@ -6,14 +6,13 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.validator.constraints.br.CPF;
 
 import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "usuario", uniqueConstraints = @UniqueConstraint(columnNames = {"cpf", "email"} ))
-public class UsuarioModel {
+@Table(name = "viagem")
+public class ViagemModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,31 +20,36 @@ public class UsuarioModel {
     @Getter
     @Setter
     private int id;
-    @NotBlank
-    @Size(min = 3, max = 100)
-    @Column(name = "nome")
-    @Getter
-    @Setter
-    private String nome;
-    @CPF
-    @Column(name = "cpf")
-    @Getter
-    @Setter
-    private String cpf;
-    @Email
-    @Column(name = "email")
-    @Getter
-    @Setter
-    private String email;
-    @NotBlank
-    @Column(name = "senha")
-    @Getter
-    @Setter
-    private String senha;
+    @Column(name = "data_viagem")
     @PastOrPresent
     @NotNull
     @Getter
     @Setter
-    private LocalDate nascimento;
+    private LocalDate dataViagem;
 
-}
+    @Column(name = "ponto_desembarque")
+    @NotNull
+    @Getter
+    @Setter
+    private int pontoDesembarque;
+
+    @Column(name = "ponto_encontro")
+    @NotNull
+    @Getter
+    @Setter
+    private int pontoEncontro;
+
+    @Column(name = "descricao")
+    @NotBlank
+    @Getter
+    @Setter
+    private int descricao;
+
+    @Column(name = "horario")
+    @PastOrPresent
+    @NotNull
+    @Getter
+    @Setter
+    private LocalDate horario;
+
+  }

@@ -1,7 +1,9 @@
 package com.api.travelsisters.controller;
 
-import com.api.travelsisters.repository.UsuarioRepository;
-import com.api.travelsisters.model.UsuarioModel;
+import com.api.travelsisters.model.MotoristaModel;
+import com.api.travelsisters.model.ViagemModel;
+import com.api.travelsisters.repository.MotoristaRepository;
+import com.api.travelsisters.repository.ViagemRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -10,13 +12,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/usuarios")
-public class UsuarioController {
+@RequestMapping("/viagens")
+public class ViagemController {
     @Autowired
-    private UsuarioRepository repository;
+    private ViagemRepository repository;
 
     @GetMapping("/")
-    public ResponseEntity<List<UsuarioModel>> listar() {
+    public ResponseEntity<List<ViagemModel>> listar() {
         if (repository.findAll().isEmpty()) {
             return ResponseEntity.status(204).build();
         }
@@ -24,7 +26,7 @@ public class UsuarioController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UsuarioModel> findByID(@Valid @PathVariable int id) {
+    public ResponseEntity<ViagemModel> findByID(@Valid @PathVariable int id) {
         if (repository.findById(id) != null) {
             return ResponseEntity.status(200).body(repository.findById(id));
         }
@@ -32,8 +34,8 @@ public class UsuarioController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<UsuarioModel> cadastrar
-            (@Valid @RequestBody UsuarioModel cadastro) {
+    public ResponseEntity<ViagemModel> cadastrar
+            (@Valid @RequestBody ViagemModel cadastro) {
 
         repository.save(cadastro);
         return ResponseEntity.status(201).body(cadastro);
@@ -42,8 +44,8 @@ public class UsuarioController {
 
 
     @PutMapping("/")
-    public ResponseEntity<UsuarioModel> alterar
-            (@Valid @RequestBody UsuarioModel cadastro) {
+    public ResponseEntity<ViagemModel> alterar
+            (@Valid @RequestBody ViagemModel cadastro) {
         return ResponseEntity.status(200).body(repository.save(cadastro));
     }
 
@@ -51,7 +53,7 @@ public class UsuarioController {
     public ResponseEntity<String> deletar(@Valid @PathVariable int id) {
 
         try {
-            UsuarioModel cadastro = findByID(id).getBody();
+            ViagemModel cadastro = findByID(id).getBody();
             assert cadastro != null;
             this.repository.delete(cadastro);
             return ResponseEntity.status(200).build();
