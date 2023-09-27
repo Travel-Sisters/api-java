@@ -15,6 +15,7 @@ public class UsuarioController {
     @Autowired
     private UsuarioRepository repository;
 
+    @CrossOrigin
     @GetMapping("/")
     public ResponseEntity<List<UsuarioModel>> listar() {
         if (repository.findAll().isEmpty()) {
@@ -23,6 +24,7 @@ public class UsuarioController {
         return ResponseEntity.status(200).body(repository.findAll());
     }
 
+    @CrossOrigin
     @GetMapping("/{id}")
     public ResponseEntity<UsuarioModel> findByID(@Valid @PathVariable int id) {
         if (repository.findById(id) != null) {
@@ -31,6 +33,7 @@ public class UsuarioController {
         return ResponseEntity.status(404).build();
     }
 
+    @CrossOrigin
     @PostMapping("/")
     public ResponseEntity<UsuarioModel> cadastrar
             (@Valid @RequestBody UsuarioModel cadastro) {
@@ -41,12 +44,14 @@ public class UsuarioController {
     }
 
 
+    @CrossOrigin
     @PutMapping("/")
     public ResponseEntity<UsuarioModel> alterar
             (@Valid @RequestBody UsuarioModel cadastro) {
         return ResponseEntity.status(200).body(repository.save(cadastro));
     }
 
+    @CrossOrigin
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deletar(@Valid @PathVariable int id) {
 
@@ -60,5 +65,6 @@ public class UsuarioController {
         }
     }
 }
+
 
 
