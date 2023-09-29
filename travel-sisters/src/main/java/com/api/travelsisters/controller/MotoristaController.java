@@ -16,7 +16,7 @@ import java.util.List;
 public class MotoristaController {
     @Autowired
     private MotoristaRepository repository;
-
+    @CrossOrigin
     @GetMapping("/")
     public ResponseEntity<List<MotoristaModel>> listar() {
         if (repository.findAll().isEmpty()) {
@@ -25,6 +25,7 @@ public class MotoristaController {
         return ResponseEntity.status(200).body(repository.findAll());
     }
 
+    @CrossOrigin
     @GetMapping("/{id}")
     public ResponseEntity<MotoristaModel> findByID(@Valid @PathVariable int id) {
         if (repository.findById(id) != null) {
@@ -33,6 +34,7 @@ public class MotoristaController {
         return ResponseEntity.status(404).build();
     }
 
+    @CrossOrigin
     @PostMapping("/")
     public ResponseEntity<MotoristaModel> cadastrar
             (@Valid @RequestBody MotoristaModel cadastro) {
@@ -42,13 +44,14 @@ public class MotoristaController {
 
     }
 
-
+    @CrossOrigin
     @PutMapping("/")
     public ResponseEntity<MotoristaModel> alterar
             (@Valid @RequestBody MotoristaModel cadastro) {
         return ResponseEntity.status(200).body(repository.save(cadastro));
     }
 
+    @CrossOrigin
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deletar(@Valid @PathVariable int id) {
 
