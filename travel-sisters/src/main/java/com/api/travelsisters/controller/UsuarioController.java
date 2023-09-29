@@ -1,5 +1,6 @@
 package com.api.travelsisters.controller;
 
+import com.api.travelsisters.dto.LoginDTO;
 import com.api.travelsisters.repository.UsuarioRepository;
 import com.api.travelsisters.model.UsuarioModel;
 import jakarta.validation.Valid;
@@ -63,6 +64,16 @@ public class UsuarioController {
         } catch (Exception error) {
             return ResponseEntity.status(404).build();
         }
+    }
+
+    @CrossOrigin
+    @PostMapping("/entrar")
+    public ResponseEntity<String> entrar(@RequestBody LoginDTO login) {
+        var usuario = repository.findByEmailAndSenha(login.getEmail(),login.getSenha());
+        if (usuario == null) {
+            return ResponseEntity.status(400).build();
+        }
+        return ResponseEntity.status(200).build();
     }
 }
 

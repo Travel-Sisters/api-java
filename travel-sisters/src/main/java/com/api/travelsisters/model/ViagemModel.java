@@ -8,48 +8,43 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Getter
+@Setter
 @Table(name = "viagem")
 public class ViagemModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    @Getter
-    @Setter
     private int id;
     @Column(name = "data_viagem")
     @PastOrPresent
     @NotNull
-    @Getter
-    @Setter
-    private LocalDate dataViagem;
+    private LocalDate data;
 
     @Column(name = "ponto_desembarque")
     @NotNull
-    @Getter
-    @Setter
-    private int pontoDesembarque;
+    private String pontoDesembarque;
 
     @Column(name = "ponto_encontro")
     @NotNull
-    @Getter
-    @Setter
-    private int pontoEncontro;
+    private String pontoEncontro;
 
     @Column(name = "descricao")
     @NotBlank
-    @Getter
-    @Setter
-    private int descricao;
+    private String descricao;
 
     @Column(name = "horario")
     @PastOrPresent
     @NotNull
-    @Getter
-    @Setter
-    private LocalDate horario;
+    private LocalTime horario;
+    @Column(name = "valor")
+    @NotNull
+    private Double valor;
 
-  }
+}
