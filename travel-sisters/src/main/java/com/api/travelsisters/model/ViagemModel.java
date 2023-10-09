@@ -23,24 +23,18 @@ public class ViagemModel {
     @Column(name = "id")
     private int id;
     @Column(name = "data_viagem")
-    @PastOrPresent
     @NotNull
     private LocalDate data;
-
+    @Column(name = "ponto_embarque")
+    @NotNull
+    private String pontoEmbarque;
     @Column(name = "ponto_desembarque")
     @NotNull
     private String pontoDesembarque;
-
-    @Column(name = "ponto_encontro")
-    @NotNull
-    private String pontoEncontro;
-
     @Column(name = "descricao")
     @NotBlank
     private String descricao;
-
     @Column(name = "horario")
-    @PastOrPresent
     @NotNull
     private LocalTime horario;
     @Column(name = "valor")
