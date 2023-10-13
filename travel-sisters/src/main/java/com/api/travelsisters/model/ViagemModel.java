@@ -10,8 +10,6 @@ import lombok.Setter;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Getter
 @Setter
@@ -41,4 +39,44 @@ public class ViagemModel {
     @NotNull
     private Double valor;
 
+    public ViagemModel(int id, LocalDate data, String pontoEmbarque, String pontoDesembarque, String descricao, LocalTime horario, Double valor) {
+        this.id = id;
+        this.data = data;
+        this.pontoEmbarque = pontoEmbarque;
+        this.pontoDesembarque = pontoDesembarque;
+        this.descricao = descricao;
+        this.horario = horario;
+        this.valor = valor;
+    }
+
+    public ViagemModel() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public LocalDate getData() {
+        return data;
+    }
+
+    public String getPontoEmbarque() {
+        return pontoEmbarque;
+    }
+
+    public String getPontoDesembarque() {
+        return pontoDesembarque;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public LocalTime getHorario() {
+        return horario;
+    }
+
+    public Double getValor() {
+        return valor;
+    }
 }
