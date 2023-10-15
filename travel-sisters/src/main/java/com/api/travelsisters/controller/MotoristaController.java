@@ -28,10 +28,7 @@ public class MotoristaController {
     @CrossOrigin
     @GetMapping("/{id}")
     public ResponseEntity<MotoristaModel> findByID(@Valid @PathVariable int id) {
-        if (repository.findById(id) != null) {
-            return ResponseEntity.status(200).body(repository.findById(id));
-        }
-        return ResponseEntity.status(404).build();
+        return ResponseEntity.of(repository.findById(id));
     }
 
     @CrossOrigin

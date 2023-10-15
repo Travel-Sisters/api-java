@@ -1,5 +1,6 @@
 package com.api.travelsisters.controller;
 
+
 import com.api.travelsisters.dto.LoginDTO;
 import com.api.travelsisters.repository.UsuarioRepository;
 import com.api.travelsisters.model.UsuarioModel;
@@ -28,10 +29,7 @@ public class UsuarioController {
     @CrossOrigin
     @GetMapping("/{id}")
     public ResponseEntity<UsuarioModel> findByID(@Valid @PathVariable int id) {
-        if (repository.findById(id) != null) {
-            return ResponseEntity.status(200).body(repository.findById(id));
-        }
-        return ResponseEntity.status(404).build();
+        return ResponseEntity.of(repository.findById(id));
     }
 
     @CrossOrigin
@@ -43,7 +41,6 @@ public class UsuarioController {
         return ResponseEntity.status(201).body(cadastro);
 
     }
-
 
     @CrossOrigin
     @PutMapping("/")
@@ -66,14 +63,15 @@ public class UsuarioController {
         }
     }
 
-    @CrossOrigin
     @PostMapping("/entrar")
     public ResponseEntity<String> entrar(@RequestBody LoginDTO login) {
-        var usuario = repository.findByEmailAndSenha(login.getEmail(),login.getSenha());
-        if (usuario == null) {
+
+        LoginDTO usuario = repository.findByEmailAndSenha(login.getEmail(), login.getSenha());
+        if (usuario != null) {
+            return ResponseEntity.status(200).build();
+        } else {
             return ResponseEntity.status(400).build();
         }
-        return ResponseEntity.status(200).build();
     }
 }
 
