@@ -1,5 +1,7 @@
 package com.api.travelsisters.controller;
 
+import com.api.travelsisters.csv.GerenciadorDeArquivo;
+import com.api.travelsisters.csv.ListaObj;
 import com.api.travelsisters.model.ViagemModel;
 import com.api.travelsisters.repository.ViagemRepository;
 import jakarta.validation.Valid;
@@ -7,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 @RestController
@@ -26,7 +30,7 @@ public class ViagemController {
 
     @GetMapping("/{id}")
     public ResponseEntity<ViagemModel> findByID(@Valid @PathVariable int id) {
-            return ResponseEntity.of(repository.findById(id));
+        return ResponseEntity.of(repository.findById(id));
     }
 
     @PostMapping("/")
@@ -54,5 +58,22 @@ public class ViagemController {
         } catch (Exception error) {
             return ResponseEntity.status(404).build();
         }
+    }
+
+    @PostMapping("/csv")
+    public ResponseEntity<ViagemModel> csv
+            (@RequestBody ViagemModel viagem) {
+
+        ListaObj<ViagemModel> listaViagem = new ListaObj<>(1);
+
+        listaViagem.adiciona(new ViagemModel(viagem.getId(), viagem.getData(),
+                viagem.getPontoEmbarque(), viagem.getPontoDesembarque(),
+                viagem.getDescricao(), viagem.getHorario(), viagem.getValor()));
+
+        GerenciadorDeArquivo.gravaArquivoCsv(listaViagem, "viagem");
+
+        System.out.println("Arquivo gerado com sucesso !");
+        return ResponseEntity.status(200).build();
+
     }
 }
