@@ -31,3 +31,5 @@ build/
 
 ### VS Code ###
 .vscode/
+
+\api-java\travel-sisters\src\main\resources\application.properties
