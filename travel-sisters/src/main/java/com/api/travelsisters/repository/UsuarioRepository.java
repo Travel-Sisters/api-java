@@ -9,5 +9,6 @@ import java.util.List;
 
 public interface UsuarioRepository extends JpaRepository<UsuarioModel, Integer> {
     LoginDTO findByEmailAndSenha(String email, String senha);
+    UsuarioModel findByEmail(String username);
 }
 
