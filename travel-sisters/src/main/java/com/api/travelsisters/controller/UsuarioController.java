@@ -4,9 +4,11 @@ package com.api.travelsisters.controller;
 import com.api.travelsisters.dto.LoginDTO;
 import com.api.travelsisters.repository.UsuarioRepository;
 import com.api.travelsisters.model.UsuarioModel;
+import com.api.travelsisters.service.UsuarioService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,6 +18,15 @@ import java.util.List;
 public class UsuarioController {
     @Autowired
     private UsuarioRepository repository;
+
+    @Autowired
+    private UsuarioService usuarioService;
+
+    private PasswordEncoder encoder;
+
+    public UsuarioController(PasswordEncoder encoder) {
+        this.encoder = encoder;
+    }
 
     @CrossOrigin
     @GetMapping("/")
@@ -33,10 +44,11 @@ public class UsuarioController {
     }
 
     @CrossOrigin
-    @PostMapping("/")
+    @PostMapping("/cadastrar")
     public ResponseEntity<UsuarioModel> cadastrar
             (@Valid @RequestBody UsuarioModel cadastro) {
 
+        cadastro.setSenha(encoder.encode(cadastro.getSenha()));
         repository.save(cadastro);
         return ResponseEntity.status(201).body(cadastro);
 
@@ -64,14 +76,11 @@ public class UsuarioController {
     }
 
     @PostMapping("/entrar")
-    public ResponseEntity<String> entrar(@RequestBody LoginDTO login) {
+    public ResponseEntity entrar(@RequestBody LoginDTO login) {
 
-        LoginDTO usuario = repository.findByEmailAndSenha(login.getEmail(), login.getSenha());
-        if (usuario != null) {
-            return ResponseEntity.status(200).build();
-        } else {
-            return ResponseEntity.status(400).build();
-        }
+        ResponseEntity resposta = usuarioService.autenticar(login);
+
+        return ResponseEntity.status(resposta.getStatusCode()).body(resposta.getBody());
     }
 }
 
