@@ -1,5 +1,8 @@
 package com.api.travelsisters.csv;
 
+import com.api.travelsisters.model.ViagemModel;
+
+import java.util.Arrays;
 import java.util.List;
 
 public class ListaObj<T> {
@@ -77,5 +80,33 @@ public class ListaObj<T> {
         nroElem = 0;
     }
 
+    public int buscarPorAno(int ano){
+        int inf, mid, sup;
+        inf = 0;
+        sup = vetor.length - 1;
+
+        while(inf <= sup){
+            mid = (inf + sup) / 2;
+            ViagemModel current = (ViagemModel) vetor[mid];
+            if(current.getData().getYear() == ano){
+                return mid;
+            } else if(ano > current.getData().getYear()){
+                sup = mid - 1;
+            } else {
+                inf = mid + 1;
+            }
+        }
+
+        return -1;
+    }
+
+    @Override
+    public String toString() {
+        return "ListaObj{" +
+                "vetor=" + Arrays.toString(vetor) +
+                ", nroElem=" + nroElem +
+                '}';
+    }
 }
+
 

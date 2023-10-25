@@ -79,4 +79,17 @@ public class ViagemModel {
     public Double getValor() {
         return valor;
     }
+
+    @Override
+    public String toString() {
+        return "ViagemModel{" +
+                "id=" + id +
+                ", data=" + data +
+                ", pontoEmbarque='" + pontoEmbarque + '\'' +
+                ", pontoDesembarque='" + pontoDesembarque + '\'' +
+                ", descricao='" + descricao + '\'' +
+                ", horario=" + horario +
+                ", valor=" + valor +
+                '}';
+    }
 }
