@@ -20,7 +20,7 @@ public class ViagemController {
     @Autowired
     private ViagemRepository repository;
 
-    @GetMapping("/")
+    @GetMapping("/listar")
     public ResponseEntity<List<ViagemModel>> listar() {
         if (repository.findAll().isEmpty()) {
             return ResponseEntity.status(204).build();
@@ -28,12 +28,12 @@ public class ViagemController {
         return ResponseEntity.status(200).body(repository.findAll());
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("buscarPorId/{id}")
     public ResponseEntity<ViagemModel> findByID(@Valid @PathVariable int id) {
         return ResponseEntity.of(repository.findById(id));
     }
 
-    @PostMapping("/")
+    @PostMapping("/cadastrar")
     public ResponseEntity<ViagemModel> cadastrar
             (@Valid @RequestBody ViagemModel cadastro) {
 
@@ -42,13 +42,13 @@ public class ViagemController {
 
     }
 
-    @PutMapping("/")
+    @PutMapping("/alterar")
     public ResponseEntity<ViagemModel> alterar
             (@Valid @RequestBody ViagemModel cadastro) {
         return ResponseEntity.status(200).body(repository.save(cadastro));
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/deletar/{id}")
     public ResponseEntity<String> deletar(@Valid @PathVariable int id) {
         try {
             ViagemModel cadastro = findByID(id).getBody();

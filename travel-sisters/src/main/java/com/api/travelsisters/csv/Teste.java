@@ -14,15 +14,15 @@ public class Teste {
                 "a", "b", "a para b",
                 LocalTime.parse("14:00:00"), 200.00));
 
-        viagens.adiciona(new ViagemModel(1, LocalDate.of(2023, 8, 12),
+        viagens.adiciona(new ViagemModel(1, LocalDate.of(2024, 8, 12),
                 "a", "b", "a para b",
                 LocalTime.parse("14:00:00"), 300.00));
 
-        viagens.adiciona(new ViagemModel(1, LocalDate.of(2023, 12, 12),
+        viagens.adiciona(new ViagemModel(1, LocalDate.of(2022, 12, 12),
                 "a", "b", "a para b",
                 LocalTime.parse("14:00:00"), 400.00));
 
-        viagens.adiciona(new ViagemModel(1, LocalDate.of(2023, 4, 12),
+        viagens.adiciona(new ViagemModel(1, LocalDate.of(2020, 4, 12),
                 "a", "b", "a para b",
                 LocalTime.parse("14:00:00"), 500.00));
 
@@ -34,6 +34,7 @@ public class Teste {
 
         do {
             Scanner leitor = new Scanner(System.in);
+            Scanner leitorPesqBinario = new Scanner(System.in);
 
             System.out.println("""
                     Escolha uma opção:
@@ -57,22 +58,28 @@ public class Teste {
                     for (int i = 0; i < viagens.getTamanho() - 1; i++) {
                         for (int j = 0; j < viagens.getTamanho() - i - 1; j++) {
 
-                            if (viagens.getElemento(j).getData().getMonthValue() >
-                                    viagens.getElemento(j + 1).getData().getMonthValue()) {
+                            if (viagens.getElemento(j).getData().getYear() >
+                                    viagens.getElemento(j + 1).getData().getYear()) {
 
                                 ViagemModel x = viagens.getElemento(j);
                                 viagens.setElemento(j, viagens.getElemento(j + 1));
                                 viagens.setElemento(j + 1, x);
                             }
                         }
+
+                    }
+                    for (int x = 0; x < viagens.getTamanho(); x++) {
+                        System.out.println(viagens.getElemento(x));
                     }
                 }
                 case 4 -> {
-
+                    System.out.println("Digite o número que deseja pesquisar:");
+                    int x = leitorPesqBinario.nextInt();
+                    
+                    System.out.println( viagens.buscarPorAno(x));
                 }
             }
         }
         while (opcaoEscolhida != 0);
-
     }
 }

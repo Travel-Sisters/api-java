@@ -29,7 +29,7 @@ public class UsuarioController {
     }
 
     @CrossOrigin
-    @GetMapping("/")
+    @GetMapping("/listar")
     public ResponseEntity<List<UsuarioModel>> listar() {
         if (repository.findAll().isEmpty()) {
             return ResponseEntity.status(204).build();
@@ -38,7 +38,7 @@ public class UsuarioController {
     }
 
     @CrossOrigin
-    @GetMapping("/{id}")
+    @GetMapping("/buscarPorId/{id}")
     public ResponseEntity<UsuarioModel> findByID(@Valid @PathVariable int id) {
         return ResponseEntity.of(repository.findById(id));
     }
@@ -55,14 +55,14 @@ public class UsuarioController {
     }
 
     @CrossOrigin
-    @PutMapping("/")
+    @PutMapping("/alterar")
     public ResponseEntity<UsuarioModel> alterar
             (@Valid @RequestBody UsuarioModel cadastro) {
         return ResponseEntity.status(200).body(repository.save(cadastro));
     }
 
     @CrossOrigin
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/deletar/{id}")
     public ResponseEntity<String> deletar(@Valid @PathVariable int id) {
 
         try {
