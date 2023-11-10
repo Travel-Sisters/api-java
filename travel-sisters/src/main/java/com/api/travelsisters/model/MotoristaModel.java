@@ -6,10 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
 @Entity
 @Table(name = "motorista", uniqueConstraints = @UniqueConstraint(columnNames = {"cnh", "placa_van"}))
 public class MotoristaModel {
@@ -27,8 +23,63 @@ public class MotoristaModel {
 
     @NotNull
     @Column(name = "empresa")
-    private String fkEmpresa;
+    private int fkEmpresa;
 
+    @NotNull
+    @Column(name = "usuario")
+    private int fkUsuario;
+
+
+    public MotoristaModel(int id, String cnh, String placaVan, int fkEmpresa, int fkUsuario) {
+        this.id = id;
+        this.cnh = cnh;
+        this.placaVan = placaVan;
+        this.fkEmpresa = fkEmpresa;
+        this.fkUsuario = fkUsuario;
+    }
+
+    public MotoristaModel() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getCnh() {
+        return cnh;
+    }
+
+    public void setCnh(String cnh) {
+        this.cnh = cnh;
+    }
+
+    public String getPlacaVan() {
+        return placaVan;
+    }
+
+    public void setPlacaVan(String placaVan) {
+        this.placaVan = placaVan;
+    }
+
+    public int getFkEmpresa() {
+        return fkEmpresa;
+    }
+
+    public void setFkEmpresa(int fkEmpresa) {
+        this.fkEmpresa = fkEmpresa;
+    }
+
+    public int getFkUsuario() {
+        return fkUsuario;
+    }
+
+    public void setFkUsuario(int fkUsuario) {
+        this.fkUsuario = fkUsuario;
+    }
 }
 
 
