@@ -1,5 +1,8 @@
 package com.api.travelsisters.csv;
 
+import com.api.travelsisters.model.EnderecosModel;
+import com.api.travelsisters.model.MotoristaModel;
+import com.api.travelsisters.model.UsuarioModel;
 import com.api.travelsisters.model.ViagemModel;
 
 import java.time.LocalDate;
@@ -11,24 +14,15 @@ public class Teste {
         ListaObj<ViagemModel> viagens = new ListaObj<>(5);
 
         viagens.adiciona(new ViagemModel(1, LocalDate.of(2023, 1, 12),
-                "a", "b", "a para b",
-                LocalTime.parse("14:00:00"), 200.00));
+                new EnderecosModel(), new EnderecosModel(), "a para b",
+                LocalTime.parse("14:00:00"), 200.00,
+                new UsuarioModel(), new MotoristaModel()));
 
         viagens.adiciona(new ViagemModel(1, LocalDate.of(2024, 8, 12),
-                "a", "b", "a para b",
-                LocalTime.parse("14:00:00"), 300.00));
+                new EnderecosModel(), new EnderecosModel(), "a para b",
+                LocalTime.parse("14:00:00"), 300.00,
+                new UsuarioModel(), new MotoristaModel()));
 
-        viagens.adiciona(new ViagemModel(1, LocalDate.of(2022, 12, 12),
-                "a", "b", "a para b",
-                LocalTime.parse("14:00:00"), 400.00));
-
-        viagens.adiciona(new ViagemModel(1, LocalDate.of(2020, 4, 12),
-                "a", "b", "a para b",
-                LocalTime.parse("14:00:00"), 500.00));
-
-        viagens.adiciona(new ViagemModel(1, LocalDate.of(2023, 3, 12),
-                "a", "b", "a para b",
-                LocalTime.parse("14:00:00"), 600.00));
 
         int opcaoEscolhida;
 

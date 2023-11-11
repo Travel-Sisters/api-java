@@ -44,7 +44,7 @@ public class MotoristaController {
     public ResponseEntity<String> cadastrar
             (@Valid @RequestBody MotoristaModel cadastro) {
 
-        if (!empresaRepository.existsById(cadastro.getFkEmpresa())){
+        if (!empresaRepository.existsById(cadastro.getFkEmpresa().getId())) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("fk da empresa não encontrada no banco de dados");
         }
         UserHandshakeHandler userH = new UserHandshakeHandler();

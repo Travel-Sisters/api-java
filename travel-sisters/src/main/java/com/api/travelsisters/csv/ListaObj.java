@@ -80,17 +80,35 @@ public class ListaObj<T> {
         nroElem = 0;
     }
 
-    public int buscarPorAno(int ano){
+    public void ordenar(ListaObj<ViagemModel> viagens) {
+
+        for (int i = 0; i < viagens.getTamanho() - 1; i++) {
+            for (int j = 0; j < viagens.getTamanho() - i - 1; j++) {
+
+                if (viagens.getElemento(j).getData().getYear() >
+                        viagens.getElemento(j + 1).getData().getYear()) {
+
+                    ViagemModel x = viagens.getElemento(j);
+                    viagens.setElemento(j, viagens.getElemento(j + 1));
+                    viagens.setElemento(j + 1, x);
+                }
+            }
+
+        }
+    }
+
+    public int buscarPorAno(int ano) {
         int inf, mid, sup;
         inf = 0;
         sup = vetor.length - 1;
 
-        while(inf <= sup){
+        while (inf <= sup) {
             mid = (inf + sup) / 2;
             ViagemModel current = (ViagemModel) vetor[mid];
-            if(current.getData().getYear() == ano){
+            if (current.getData().getYear() == ano) {
+                System.out.println(mid);
                 return mid;
-            } else if(ano > current.getData().getYear()){
+            } else if (ano > current.getData().getYear()) {
                 sup = mid - 1;
             } else {
                 inf = mid + 1;

@@ -11,8 +11,6 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Entity
-@Getter
-@Setter
 @Table(name = "viagem")
 public class ViagemModel {
 
@@ -23,12 +21,12 @@ public class ViagemModel {
     @Column(name = "data_viagem")
     @NotNull
     private LocalDate data;
-    @Column(name = "ponto_embarque")
-    @NotNull
-    private String pontoEmbarque;
-    @Column(name = "ponto_desembarque")
-    @NotNull
-    private String pontoDesembarque;
+    @ManyToOne
+    @JoinColumn(name = "ponto_embarque")
+    private EnderecosModel pontoEmbarque;
+    @ManyToOne
+    @JoinColumn(name = "ponto_desembarque")
+    private EnderecosModel pontoDesembarque;
     @Column(name = "descricao")
     @NotBlank
     private String descricao;
@@ -38,8 +36,20 @@ public class ViagemModel {
     @Column(name = "valor")
     @NotNull
     private Double valor;
+    @ManyToOne
+    @JoinColumn(name = "usuario")
+    private UsuarioModel usuario;
+    @ManyToOne
+    @JoinColumn(name = "motorista")
+    private MotoristaModel motorista;
 
-    public ViagemModel(int id, LocalDate data, String pontoEmbarque, String pontoDesembarque, String descricao, LocalTime horario, Double valor) {
+    public ViagemModel() {
+    }
+
+    public ViagemModel(int id, LocalDate data, EnderecosModel pontoEmbarque,
+                       EnderecosModel pontoDesembarque, String descricao,
+                       LocalTime horario, Double valor, UsuarioModel usuario,
+                       MotoristaModel motorista) {
         this.id = id;
         this.data = data;
         this.pontoEmbarque = pontoEmbarque;
@@ -47,37 +57,80 @@ public class ViagemModel {
         this.descricao = descricao;
         this.horario = horario;
         this.valor = valor;
+        this.usuario = usuario;
+        this.motorista = motorista;
     }
 
-    public ViagemModel() {
+    public UsuarioModel getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(UsuarioModel usuario) {
+        this.usuario = usuario;
+    }
+
+    public MotoristaModel getMotorista() {
+        return motorista;
+    }
+
+    public void setMotorista(MotoristaModel motorista) {
+        this.motorista = motorista;
     }
 
     public int getId() {
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public LocalDate getData() {
         return data;
     }
 
-    public String getPontoEmbarque() {
+    public void setData(LocalDate data) {
+        this.data = data;
+    }
+
+    public EnderecosModel getPontoEmbarque() {
         return pontoEmbarque;
     }
 
-    public String getPontoDesembarque() {
+    public void setPontoEmbarque(EnderecosModel pontoEmbarque) {
+        this.pontoEmbarque = pontoEmbarque;
+    }
+
+    public EnderecosModel getPontoDesembarque() {
         return pontoDesembarque;
+    }
+
+    public void setPontoDesembarque(EnderecosModel pontoDesembarque) {
+        this.pontoDesembarque = pontoDesembarque;
     }
 
     public String getDescricao() {
         return descricao;
     }
 
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
     public LocalTime getHorario() {
         return horario;
     }
 
+    public void setHorario(LocalTime horario) {
+        this.horario = horario;
+    }
+
     public Double getValor() {
         return valor;
+    }
+
+    public void setValor(Double valor) {
+        this.valor = valor;
     }
 
     @Override
@@ -85,11 +138,13 @@ public class ViagemModel {
         return "ViagemModel{" +
                 "id=" + id +
                 ", data=" + data +
-                ", pontoEmbarque='" + pontoEmbarque + '\'' +
-                ", pontoDesembarque='" + pontoDesembarque + '\'' +
+                ", pontoEmbarque=" + pontoEmbarque +
+                ", pontoDesembarque=" + pontoDesembarque +
                 ", descricao='" + descricao + '\'' +
                 ", horario=" + horario +
                 ", valor=" + valor +
+                ", usuario=" + usuario +
+                ", motorista=" + motorista +
                 '}';
     }
 }
