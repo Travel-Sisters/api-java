@@ -47,7 +47,8 @@ public class MotoristaController {
         if (!empresaRepository.existsById(cadastro.getFkEmpresa())){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("fk da empresa não encontrada no banco de dados");
         }
-        cadastro.setHandler(new UserHandshakeHandler());
+        UserHandshakeHandler userH = new UserHandshakeHandler();
+        cadastro.setHandler(userH.hashCode());
         repository.save(cadastro);
         return ResponseEntity.status(HttpStatus.CREATED).build();
 

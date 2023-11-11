@@ -1,14 +1,7 @@
 package com.api.travelsisters.model;
 
-import com.api.travelsisters.UserHandshakeHandler;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-import java.util.UUID;
 
 @Entity
 @Table(name = "motorista", uniqueConstraints = @UniqueConstraint(columnNames = {"cnh", "placa_van"}))
@@ -33,12 +26,11 @@ public class MotoristaModel {
     @Column(name = "usuario")
     private int fkUsuario;
 
-    @NotNull
     @Column(name = "handler")
-    private UserHandshakeHandler handler;
+    private int handler;
 
 
-    public MotoristaModel(int id, String cnh, String placaVan, int fkEmpresa, int fkUsuario, UserHandshakeHandler handler) {
+    public MotoristaModel(int id, String cnh, String placaVan, int fkEmpresa, int fkUsuario, int handler) {
         this.id = id;
         this.cnh = cnh;
         this.placaVan = placaVan;
@@ -90,11 +82,11 @@ public class MotoristaModel {
         this.fkUsuario = fkUsuario;
     }
 
-    public UserHandshakeHandler getHandler() {
+    public int getHandler() {
         return handler;
     }
 
-    public void setHandler(UserHandshakeHandler handler) {
+    public void setHandler(int handler) {
         this.handler = handler;
     }
 }
