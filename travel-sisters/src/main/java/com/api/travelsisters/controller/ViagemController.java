@@ -2,10 +2,12 @@ package com.api.travelsisters.controller;
 
 import com.api.travelsisters.csv.GerenciadorDeArquivo;
 import com.api.travelsisters.csv.ListaObj;
+import com.api.travelsisters.model.MotoristaModel;
 import com.api.travelsisters.model.ViagemModel;
 import com.api.travelsisters.repository.ViagemRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -60,20 +62,21 @@ public class ViagemController {
         }
     }
 
-    @PostMapping("/csv")
-    public ResponseEntity<ViagemModel> csv
-            (@RequestBody ViagemModel viagem) {
+    @GetMapping("/csv/{idMotorista}")
+    public ResponseEntity<String> csv(@PathVariable Integer idMotorista) {
+        List<ViagemModel> lista = repository.findByMotoristaId(idMotorista);
+        ListaObj<ViagemModel> listaViagem = new ListaObj<>(lista.size());
 
-        ListaObj<ViagemModel> listaViagem = new ListaObj<>(1);
+        for (ViagemModel viagem : lista) {
+            listaViagem.adiciona(viagem);
+        }
 
-        listaViagem.adiciona(new ViagemModel(viagem.getId(), viagem.getData(),
-                viagem.getPontoEmbarque(), viagem.getPontoDesembarque(),
-                viagem.getDescricao(), viagem.getHorario(), viagem.getValor()));
+        listaViagem.ordenar(listaViagem);
+        listaViagem.buscarPorAno(2023);
+        GerenciadorDeArquivo.gravaArquivoCsv(listaViagem, "viagens");
+        GerenciadorDeArquivo.leArquivoCsv("viagens");
 
-        GerenciadorDeArquivo.gravaArquivoCsv(listaViagem, "viagem");
-
-        System.out.println("Arquivo gerado com sucesso !");
-        return ResponseEntity.status(200).build();
+        return ResponseEntity.status(201).body("Arquivo gerado com sucesso");
 
     }
 }

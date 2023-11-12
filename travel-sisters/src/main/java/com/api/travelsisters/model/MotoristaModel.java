@@ -2,10 +2,7 @@ package com.api.travelsisters.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+
 @Entity
 @Table(name = "motorista", uniqueConstraints = @UniqueConstraint(columnNames = {"cnh", "placa_van"}))
 public class MotoristaModel {
@@ -22,20 +19,25 @@ public class MotoristaModel {
     private String placaVan;
 
     @NotNull
-    @Column(name = "empresa")
-    private int fkEmpresa;
-
+    @ManyToOne
+    @JoinColumn(name = "empresa")
+    private EmpresaModel fkEmpresa;
     @NotNull
-    @Column(name = "usuario")
-    private int fkUsuario;
+    @ManyToOne
+    @JoinColumn(name = "usuario")
+    private UsuarioModel fkUsuario;
+    @Column(name = "handler")
+    private Integer handler;
 
 
-    public MotoristaModel(int id, String cnh, String placaVan, int fkEmpresa, int fkUsuario) {
+    public MotoristaModel(int id, String cnh, String placaVan, EmpresaModel fkEmpresa,
+                          UsuarioModel fkUsuario, int handler) {
         this.id = id;
         this.cnh = cnh;
         this.placaVan = placaVan;
         this.fkEmpresa = fkEmpresa;
         this.fkUsuario = fkUsuario;
+        this.handler = handler;
     }
 
     public MotoristaModel() {
@@ -65,20 +67,28 @@ public class MotoristaModel {
         this.placaVan = placaVan;
     }
 
-    public int getFkEmpresa() {
+    public EmpresaModel getFkEmpresa() {
         return fkEmpresa;
     }
 
-    public void setFkEmpresa(int fkEmpresa) {
+    public void setFkEmpresa(EmpresaModel fkEmpresa) {
         this.fkEmpresa = fkEmpresa;
     }
 
-    public int getFkUsuario() {
+    public UsuarioModel getFkUsuario() {
         return fkUsuario;
     }
 
-    public void setFkUsuario(int fkUsuario) {
+    public void setFkUsuario(UsuarioModel fkUsuario) {
         this.fkUsuario = fkUsuario;
+    }
+
+    public int getHandler() {
+        return handler;
+    }
+
+    public void setHandler(int handler) {
+        this.handler = handler;
     }
 }
 

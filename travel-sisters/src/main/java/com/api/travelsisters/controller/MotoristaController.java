@@ -1,5 +1,6 @@
 package com.api.travelsisters.controller;
 
+import com.api.travelsisters.UserHandshakeHandler;
 import com.api.travelsisters.model.MotoristaModel;
 import com.api.travelsisters.model.UsuarioModel;
 import com.api.travelsisters.repository.EmpresaRepository;
@@ -43,9 +44,11 @@ public class MotoristaController {
     public ResponseEntity<String> cadastrar
             (@Valid @RequestBody MotoristaModel cadastro) {
 
-        if (!empresaRepository.existsById(cadastro.getFkEmpresa())){
+        if (!empresaRepository.existsById(cadastro.getFkEmpresa().getId())) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("fk da empresa não encontrada no banco de dados");
         }
+        UserHandshakeHandler userH = new UserHandshakeHandler();
+        cadastro.setHandler(userH.hashCode());
         repository.save(cadastro);
         return ResponseEntity.status(HttpStatus.CREATED).build();
 
