@@ -26,7 +26,8 @@ insert endereco (bairro, cidade, end_api, numero, rua) VALUES
 ('Jardim Paulista', 'São Paulo' , '3000+Av.+Nove+de+Julho,+São+Paulo,+SP',3000,'Av. Nove de Julho');
 
 insert into viagem(data_viagem, descricao, horario,valor,motorista ,ponto_desembarque,ponto_embarque, usuario) values
- ('2023-12-05',  'ponto a pra b', '14:00', 200.00, 1, 1, 1, 1);
+ ('2021-12-05',  'ponto a pra b', '14:00', 200.00, 1, 1, 1, 1);
 
+SELECT * FROM viagem WHERE motorista = 1;
 
 show tables;

@@ -18,8 +18,8 @@ public class ViagemModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-    @Column(name = "data_viagem")
     @NotNull
+    @Column(name = "data_viagem")
     private LocalDate data;
     @ManyToOne
     @JoinColumn(name = "ponto_embarque")
