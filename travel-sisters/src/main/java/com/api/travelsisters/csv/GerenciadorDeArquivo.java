@@ -34,7 +34,7 @@ public class GerenciadorDeArquivo {
                 ViagemModel viagemModel = lista.getElemento(i);
                 saida.format("%d;%s;%s;%s;%s;%s;%.2f\n",
                         viagemModel.getId(), viagemModel.getData(),
-                        viagemModel.getPontoEmbarque(), viagemModel.getPontoDesembarque(),
+                        viagemModel.getPontoEmbarque().getRua(), viagemModel.getPontoDesembarque().getRua(),
                         viagemModel.getDescricao(), viagemModel.getHorario(), viagemModel.getValor());
             }
         } catch (FormatterClosedException erro) {
@@ -73,7 +73,7 @@ public class GerenciadorDeArquivo {
         // Bloco try-catch para ler o arquivo
         try {
             // Print Cabeçalho:
-            System.out.printf("%-4s %10s %170s %170s %50s %15s %-8s\n",
+            System.out.printf("%-4s %10s %50s %50s %50s %15s %-8s\n",
                     "id", "data", "pontoEmb", "pontoDes", "descricao", "horario", "valor");
             while (entrada.hasNext()) {
                 //Print Corpo:
@@ -84,7 +84,7 @@ public class GerenciadorDeArquivo {
                 String descricao = entrada.next();
                 String horario = entrada.next();
                 double valor = entrada.nextDouble();
-                System.out.printf("%-4d %10s %170s %170s %50s %15s %-8.2f\n",
+                System.out.printf("%-4d %10s %50s %50s %50s %15s %-8.2f\n",
                         id, data, pontoEmb, pontoDes, descricao, horario, valor);
             }
         } catch (NoSuchElementException erro) {

@@ -1,4 +1,4 @@
-/*package com.api.travelsisters.txt;
+package com.api.travelsisters.txt;
 
 import com.api.travelsisters.model.ViagemModel;
 
@@ -33,7 +33,7 @@ public class GerenciadorArquivoTxt {
         int contaRegDados = 0;
 
         // Monta o registro de header
-        String header = "00NOTA20232"; //Verificar documento de layout
+        String header = "00VIAGEM"; //Verificar documento de layout
         header += LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"));
         header += "01";
 
@@ -43,12 +43,12 @@ public class GerenciadorArquivoTxt {
         // Grava os registros de dados (ou registros de corpo)
         for (ViagemModel v : lista) {
             String corpo = "02";
-            corpo += String.format("%4d", v.getId());
+            corpo += String.format("%04d", v.getId());
             corpo += String.format("%-10s", v.getData());
-            corpo += String.format("%-170s", v.getPontoEmbarque());
-            corpo += String.format("%-170s", v.getPontoDesembarque());
+            corpo += String.format("%-50s", v.getPontoEmbarque().getRua());
+            corpo += String.format("%-50s", v.getPontoDesembarque().getRua());
             corpo += String.format("%-50s", v.getDescricao());
-            corpo += String.format("%10s", v.getHorario());
+            corpo += String.format("%-5s", v.getHorario());
             corpo += String.format("%-6.2f", v.getValor());
 
             //Gravando corpo no arquivo:
@@ -93,7 +93,6 @@ public class GerenciadorArquivoTxt {
                 // 1o argumento do substring é o indice do que se quer obter, iniciando de zero
                 // 2o argumento do substring é o indice final do que se deseja, MAIS UM
 
-
                 // 012345
                 // 00NOTA
                 tipoRegistro = registro.substring(0, 2);
@@ -101,10 +100,9 @@ public class GerenciadorArquivoTxt {
                 if (tipoRegistro.equals("00")) {
                     System.out.println("É um registro de header");
                     //Exibir informações do header
-                    System.out.println("Tipo do Arquivo: " + registro.substring(2,6));
-                    System.out.println("Ano/Semestre:" + registro.substring(6,11));
-                    System.out.println("Data e Hora: " + registro.substring(11,30));
-                    System.out.println("Versão do layout: " + registro.substring(30,32));
+                    System.out.println("Tipo do Arquivo: " + registro.substring(3,6));
+                    System.out.println("Data e Hora: " + registro.substring(7,25));
+                    System.out.println("Versão do layout: " + registro.substring(26,28));
 
                 } else if (tipoRegistro.equals("01")) {
 
@@ -115,21 +113,22 @@ public class GerenciadorArquivoTxt {
                 } else if (tipoRegistro.equals("02")) {
                     System.out.println("É um registro de corpo");
 
-                    String curso = registro.substring(2,7).trim();
-                    String ra = registro.substring(7,15).trim();
-                    String nome = registro.substring(15,65).trim();
-                    String disciplina = registro.substring(65, 105).trim();
-                    Double media = Double.valueOf(registro.substring(105,110).trim().replace(",","."));
-                    int qtdFaltas = Integer.valueOf(registro.substring(110,113).trim());
-
+                    int id = Integer.valueOf(registro.substring(2,6).trim());
+                    String data = registro.substring(6,16).trim();
+                    String pontoEmb = registro.substring(16,66).trim();
+                    String pontoDes = registro.substring(66, 106).trim();
+                    String descricao = registro.substring(106, 156).trim();
+                    String horario = registro.substring(156,161).trim();
+                    double valor = Double.parseDouble(registro.substring(161,167).trim().replace(",", "."));
 
                     //Depois de guarda em variável, exiba:
-                    System.out.println("Curso: " + curso);
-                    System.out.println("RA"+ ra);
-                    System.out.println("Nome: " + nome);
-                    System.out.println("Disciplina: " + disciplina);
-                    System.out.println("Média: " + media);
-                    System.out.println("Faltas: "+ qtdFaltas);
+                    System.out.println("id: " + id);
+                    System.out.println("data"+ data);
+                    System.out.println("pontoEmb: " + pontoEmb);
+                    System.out.println("pontoDes: " + pontoDes);
+                    System.out.println("descricao: " + descricao);
+                    System.out.println("horario: "+ horario);
+                    System.out.println("valor: "+ valor);
 
 
                     // Incrementa o contador de reg de dados lidos
@@ -158,12 +157,12 @@ public class GerenciadorArquivoTxt {
         }
         // Exibe a lista lida
         System.out.println("\nLista lida do arquivo:");
-        for (Aluno a : listaLida) {
-            System.out.println(a);
+        for (ViagemModel v : listaLida) {
+            System.out.println(v);
         }
 
         // Aqui tb seria possível salvar a lista no BD
         //repository.saveAll(listaLida);
 
     }
-}*/
+}
