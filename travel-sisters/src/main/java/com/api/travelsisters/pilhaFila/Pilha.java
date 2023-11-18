@@ -3,12 +3,16 @@ package com.api.travelsisters.pilhaFila;
 // (powered by FernFlower decompiler)
 //
 
+import com.api.travelsisters.model.ViagemModel;
+
+import java.util.Arrays;
+
 public class Pilha {
-    private int[] pilha;
+    private ViagemModel[] pilha;
     private int topo;
 
     public Pilha(int capacidade) {
-        this.pilha = new int[capacidade];
+        this.pilha = new ViagemModel[capacidade];
         this.topo = -1;
     }
 
@@ -20,38 +24,55 @@ public class Pilha {
         return this.topo == this.pilha.length - 1 ? true : false;
     }
 
-    public void push(int info) {
+    public void push(ViagemModel viagem) {
         if (this.isFull()) {
             throw new IllegalStateException("org.example.Pilha cheia!");
         } else {
             ++this.topo;
-            this.pilha[this.topo] = info;
+            this.pilha[this.topo] = viagem;
             //System.out.println("Elemento adicionado");
         }
     }
 
-    public int pop() {
+    //retorna o elemento do topo e deleta
+    public String pop() {
         if (this.isEmpty()) {
-            System.out.println("Lista Vazia!");
-            return -1;
+            return "Lista Vazia!";
         } else {
-            return this.pilha[this.topo--];
+            System.out.println(this.pilha[this.topo--]);
+            return "Item desempilhado com sucesso";
+
         }
     }
 
-    public int peek() {
-        return this.isEmpty() ? -1 : this.pilha[this.topo];
+    //retorna o elemento do topo
+    public String peek() {
+        if(isEmpty()){
+            return  "Lista vazia!";
+        }else {
+            System.out.println( this.pilha[this.topo]);
+
+        return "Último item";
+        }
     }
 
     public void exibe() {
-        for(int i = this.topo; i < 0; --i) {
-            System.out.println(i + this.pilha[i]);
+        for (int i = this.topo; i >= 0; --i) {
+            System.out.println(this.pilha[i]);
         }
 
     }
 
     public int getTopo() {
         return this.topo;
+    }
+
+    @Override
+    public String toString() {
+        return "Pilha{" +
+                "pilha=" + Arrays.toString(pilha) +
+                ", topo=" + topo +
+                '}';
     }
 }
 

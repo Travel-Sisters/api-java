@@ -25,8 +25,12 @@ insert endereco (bairro, cidade, end_api, numero, rua) VALUES
 ( 'Jardim Malia II', 'São Paulo', '1670+Av.+Pres.+João+Goulart,+São+Paulo,+SP', 1670,'Av. Pres. João Goulart' ),
 ('Jardim Paulista', 'São Paulo' , '3000+Av.+Nove+de+Julho,+São+Paulo,+SP',3000,'Av. Nove de Julho');
 
-insert into viagem(data_viagem, descricao, horario,valor,motorista ,ponto_desembarque,ponto_embarque, usuario) values
- ('2021-12-05',  'ponto a pra b', '14:00', 200.00, 1, 1, 1, 1);
+insert into viagem(data_viagem, descricao, horario, status_viagem,valor,motorista ,ponto_desembarque,ponto_embarque, usuario) values
+ ('2021-12-05',  'ponto a pra b', '14:00','em progresso', 200.00, 1, 2, 1, 1);
+ 
+ insert into viagem(data_viagem, descricao, horario, status_viagem,valor,motorista,ponto_desembarque,ponto_embarque, usuario) values
+ ('2025-8-10',  'ponto a pra b', '15:00','em progresso', 500.00, 1, 1, 2, 1),
+  ('2001-05-10',  'ponto a pra b', '15:00','em progresso', 500.00, 1, 1, 2, 1);z
 
 SELECT * FROM viagem WHERE motorista = 1;
 

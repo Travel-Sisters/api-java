@@ -1,16 +1,21 @@
 package com.api.travelsisters.pilhaFila;
 
+import com.api.travelsisters.csv.ListaObj;
+import com.api.travelsisters.model.ViagemModel;
+
+import java.util.List;
+
 public class Fila {
 
     // Atributos
     private int tamanho;
-    private String[] fila;
+    private ViagemModel[] fila;
 
     // Construtor
 
     public Fila(int capacidade) {
         this.tamanho = 0;
-        this.fila = new String[capacidade];
+        this.fila = new ViagemModel[capacidade];
     }
 
     // Métodos
@@ -36,7 +41,7 @@ public class Fila {
                        no índice tamanho, e incrementa tamanho
                        Lançar IllegalStateException caso a fila esteja cheia
      */
-    public void insert(String item) {
+    public void insert(ViagemModel item) {
         if (isFull()) {
             throw new IllegalStateException();
         } else {
@@ -48,7 +53,7 @@ public class Fila {
     }
 
     /* Método peek - retorna o primeiro elemento da fila, sem removê-lo */
-    public String peek() {
+    public ViagemModel peek() {
         if (isEmpty()) {
             return null;
         }
@@ -60,11 +65,11 @@ public class Fila {
        vazia. Quando um elemento é removido, a fila "anda", e tamanho é decrementado
        Depois que a fila andar, "limpar" o ex-último elemento da fila, atribuindo null
      */
-    public String poll() {
+    public ViagemModel poll() {
         if (isEmpty()) {
             return null;
         }
-        String aux = fila[0];
+        ViagemModel aux = fila[0];
         tamanho--;
         for (int i = 0; i < this.tamanho - 1; i++) {
             this.fila[i] = this.fila[i + 1];
@@ -79,8 +84,44 @@ public class Fila {
         }
     }
 
+    public void ordenar() {
+
+        for (int i = 0; i < tamanho - 1; i++) {
+            int indiceMenor = i;
+            for (int j = i + 1; j < tamanho; j++) {
+                if (fila[j].getData().compareTo(fila[indiceMenor].getData()) < 0) {
+                    indiceMenor = j;
+                }
+            }
+            // Troca os elementos
+            ViagemModel temp = fila[indiceMenor];
+            fila[indiceMenor] = fila[i];
+            fila[i] = temp;
+
+        }
+        for (ViagemModel viagem : fila){
+            if(viagem.getStatusViagem().equalsIgnoreCase("concluído")){
+                poll();
+            }
+        }
+        System.out.println("Fila ordenada por data.");
+    }
+
     /* Usado nos testes  - complete para que fique certo */
     public int getTamanho() {
         return tamanho;
     }
+
+    public void setTamanho(int tamanho) {
+        this.tamanho = tamanho;
+    }
+
+    public ViagemModel[] getFila() {
+        return fila;
+    }
+
+    public void setFila(ViagemModel[] fila) {
+        this.fila = fila;
+    }
+
 }
