@@ -90,6 +90,18 @@ public class MotoristaModel {
     public void setHandler(int handler) {
         this.handler = handler;
     }
+
+    @Override
+    public String toString() {
+        return "MotoristaModel{" +
+                "id=" + id +
+                ", cnh='" + cnh + '\'' +
+                ", placaVan='" + placaVan + '\'' +
+                ", fkEmpresa=" + fkEmpresa +
+                ", fkUsuario=" + fkUsuario +
+                ", handler=" + handler +
+                '}';
+    }
 }
 
 

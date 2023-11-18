@@ -42,6 +42,9 @@ public class ViagemModel {
     @ManyToOne
     @JoinColumn(name = "motorista")
     private MotoristaModel motorista;
+    @Column(name = "status_viagem")
+    private String statusViagem;
+
 
     public ViagemModel() {
     }
@@ -59,6 +62,7 @@ public class ViagemModel {
         this.valor = valor;
         this.usuario = usuario;
         this.motorista = motorista;
+        this.statusViagem = "em progresso";
     }
 
     public UsuarioModel getUsuario() {
@@ -131,6 +135,14 @@ public class ViagemModel {
 
     public void setValor(Double valor) {
         this.valor = valor;
+    }
+
+    public String getStatusViagem() {
+        return statusViagem;
+    }
+
+    public void setStatusViagem(String statusViagem) {
+        this.statusViagem = statusViagem;
     }
 
     @Override

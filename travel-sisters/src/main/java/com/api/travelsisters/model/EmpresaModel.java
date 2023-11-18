@@ -18,4 +18,11 @@ public class EmpresaModel {
     public void setId(int id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return "EmpresaModel{" +
+                "id=" + id +
+                '}';
+    }
 }

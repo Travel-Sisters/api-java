@@ -85,4 +85,16 @@ public class UsuarioModel {
     public void setNascimento(LocalDate nascimento) {
         this.nascimento = nascimento;
     }
+
+    @Override
+    public String toString() {
+        return "UsuarioModel{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", cpf='" + cpf + '\'' +
+                ", email='" + email + '\'' +
+                ", senha='" + senha + '\'' +
+                ", nascimento=" + nascimento +
+                '}';
+    }
 }
