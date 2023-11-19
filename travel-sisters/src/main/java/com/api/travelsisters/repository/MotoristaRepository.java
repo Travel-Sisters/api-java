@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface MotoristaRepository extends JpaRepository<MotoristaModel, Integer> {
 
+   MotoristaModel findByUsuario_Id(Integer idUsuario);
 
 }
 

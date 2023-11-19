@@ -40,16 +40,20 @@ public class SecurityConfiguracao {
     private  static final AntPathRequestMatcher[] URLS_PERMITIDAS = {
             new AntPathRequestMatcher("/swagger-ui/**"),
             new AntPathRequestMatcher("/swagger-ui.html"),
+
             new AntPathRequestMatcher("/usuarios/entrar"),
             new AntPathRequestMatcher("/usuarios/cadastrar"),
             new AntPathRequestMatcher("/usuarios/listar"),
             new AntPathRequestMatcher("/usuarios/buscarPorId/{id}"),
             new AntPathRequestMatcher("/usuarios/alterar"),
             new AntPathRequestMatcher("/usuarios/deletar/{id}"),
+            new AntPathRequestMatcher("/usuarios/verificar-perfil/{idUsuario}"),
+
             new AntPathRequestMatcher("/motoristas/listar/{id}"),
             new AntPathRequestMatcher("/motoristas/buscarPorId/{id}"),
             new AntPathRequestMatcher("/motoristas/cadastrar"),
             new AntPathRequestMatcher("/motoristas/deletar/{id}"),
+
             new AntPathRequestMatcher("/viagens/listar"),
             new AntPathRequestMatcher("/viagens/cadastrar"),
             new AntPathRequestMatcher("/viagens/alterar/{id}"),
@@ -58,6 +62,8 @@ public class SecurityConfiguracao {
             new AntPathRequestMatcher("/viagens/txt/{idMotorista}"),
             new AntPathRequestMatcher("/viagens/pilha/{idMotorista}"),
             new AntPathRequestMatcher("/viagens/fila/{idMotorista}"),
+
+            new AntPathRequestMatcher("/enderecos/"),
 
             new AntPathRequestMatcher("/swagger-resources"),
             new AntPathRequestMatcher("/swagger-resources/**"),

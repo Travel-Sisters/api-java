@@ -25,18 +25,18 @@ public class MotoristaModel {
     @NotNull
     @ManyToOne
     @JoinColumn(name = "usuario")
-    private UsuarioModel fkUsuario;
+    private UsuarioModel usuario;
     @Column(name = "handler")
     private Integer handler;
 
 
     public MotoristaModel(int id, String cnh, String placaVan, EmpresaModel fkEmpresa,
-                          UsuarioModel fkUsuario, int handler) {
+                          UsuarioModel usuario, Integer handler) {
         this.id = id;
         this.cnh = cnh;
         this.placaVan = placaVan;
         this.fkEmpresa = fkEmpresa;
-        this.fkUsuario = fkUsuario;
+        this.usuario = usuario;
         this.handler = handler;
     }
 
@@ -75,19 +75,19 @@ public class MotoristaModel {
         this.fkEmpresa = fkEmpresa;
     }
 
-    public UsuarioModel getFkUsuario() {
-        return fkUsuario;
+    public UsuarioModel getUsuario() {
+        return usuario;
     }
 
-    public void setFkUsuario(UsuarioModel fkUsuario) {
-        this.fkUsuario = fkUsuario;
+    public void setUsuario(UsuarioModel fkUsuario) {
+        this.usuario = fkUsuario;
     }
 
-    public int getHandler() {
+    public Integer getHandler() {
         return handler;
     }
 
-    public void setHandler(int handler) {
+    public void setHandler(Integer handler) {
         this.handler = handler;
     }
 
@@ -98,7 +98,7 @@ public class MotoristaModel {
                 ", cnh='" + cnh + '\'' +
                 ", placaVan='" + placaVan + '\'' +
                 ", fkEmpresa=" + fkEmpresa +
-                ", fkUsuario=" + fkUsuario +
+                ", fkUsuario=" + usuario +
                 ", handler=" + handler +
                 '}';
     }

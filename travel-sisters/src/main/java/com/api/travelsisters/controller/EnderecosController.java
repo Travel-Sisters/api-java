@@ -15,7 +15,7 @@ public class EnderecosController {
 
     @Autowired
     private EnderecosRepository repository;
-
+    @CrossOrigin
     @GetMapping("/")
     public ResponseEntity<List<EnderecosModel>> get() {
         List enderecos = repository.findAll();
