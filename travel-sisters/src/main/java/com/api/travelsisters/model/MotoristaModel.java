@@ -3,6 +3,8 @@ package com.api.travelsisters.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 
+import java.util.Optional;
+
 @Entity
 @Table(name = "motorista", uniqueConstraints = @UniqueConstraint(columnNames = {"cnh", "placa_van"}))
 public class MotoristaModel {
@@ -18,11 +20,10 @@ public class MotoristaModel {
     @Column(name = "placa_van")
     private String placaVan;
 
-    @NotNull
     @ManyToOne
     @JoinColumn(name = "empresa")
     private EmpresaModel fkEmpresa;
-    @NotNull
+
     @ManyToOne
     @JoinColumn(name = "usuario")
     private UsuarioModel usuario;
@@ -50,6 +51,7 @@ public class MotoristaModel {
     public void setId(int id) {
         this.id = id;
     }
+
 
     public String getCnh() {
         return cnh;

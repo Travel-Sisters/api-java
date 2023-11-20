@@ -49,10 +49,7 @@ public class ViagemModel {
     public ViagemModel() {
     }
 
-    public ViagemModel(int id, LocalDate data, EnderecosModel pontoEmbarque,
-                       EnderecosModel pontoDesembarque, String descricao,
-                       LocalTime horario, Double valor, UsuarioModel usuario,
-                       MotoristaModel motorista) {
+    public ViagemModel(int id, LocalDate data, EnderecosModel pontoEmbarque, EnderecosModel pontoDesembarque, String descricao, LocalTime horario, Double valor, UsuarioModel usuario, MotoristaModel motorista, String statusViagem) {
         this.id = id;
         this.data = data;
         this.pontoEmbarque = pontoEmbarque;
@@ -62,7 +59,7 @@ public class ViagemModel {
         this.valor = valor;
         this.usuario = usuario;
         this.motorista = motorista;
-        this.statusViagem = "em progresso";
+        this.statusViagem = statusViagem;
     }
 
     public UsuarioModel getUsuario() {

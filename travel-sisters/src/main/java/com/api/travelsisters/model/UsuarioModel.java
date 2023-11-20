@@ -9,13 +9,10 @@ import lombok.Setter;
 import org.hibernate.validator.constraints.br.CPF;
 
 import java.time.LocalDate;
-@AllArgsConstructor
-@NoArgsConstructor
+
 @Entity
-@Getter
-@Setter
 @Table(name = "usuario", uniqueConstraints = @UniqueConstraint(columnNames = {"cpf", "email"} ))
-public class UsuarioModel {
+public class  UsuarioModel{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
