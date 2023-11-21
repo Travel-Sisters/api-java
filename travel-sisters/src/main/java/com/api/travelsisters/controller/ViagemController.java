@@ -47,21 +47,16 @@ public class ViagemController {
         return ResponseEntity.of(repository.findById(id));
     }
 
-    @PostMapping("/cadastrar/{idUsuario}/{idMotorista}")
+    @PostMapping("/cadastrar/{idMotorista}")
     public ResponseEntity<ViagemModel> cadastrar
             (@Valid @RequestBody ViagemModel cadastro,
-             @PathVariable Integer idUsuario,
              @PathVariable Integer idMotorista) {
-
         MotoristaModel motorista = motoristaRepository.encontrarPorId(idMotorista);
-        UsuarioModel usuario = usuarioRepository.encontrarPorId(idUsuario);
 
-        if (motorista == null || usuario == null) {
+        if (motorista == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
-
         cadastro.setMotorista(motorista);
-        cadastro.setUsuario(usuario);
         cadastro.setStatusViagem("em progresso");
         repository.save(cadastro);
         return ResponseEntity.status(201).body(cadastro);
