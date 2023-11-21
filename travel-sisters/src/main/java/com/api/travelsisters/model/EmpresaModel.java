@@ -6,10 +6,18 @@ import jakarta.persistence.*;
 @Table(name = "empresa")
 public class EmpresaModel {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    private Integer id;
+
+    public EmpresaModel(Integer id) {
+        this.id = id;
+    }
+
+    public EmpresaModel() {
+    }
 
     public int getId() {
         return id;

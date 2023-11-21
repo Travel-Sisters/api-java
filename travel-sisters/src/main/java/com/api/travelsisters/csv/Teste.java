@@ -1,6 +1,6 @@
 package com.api.travelsisters.csv;
 
-import com.api.travelsisters.model.EnderecosModel;
+/*import com.api.travelsisters.model.EnderecosModel;
 import com.api.travelsisters.model.MotoristaModel;
 import com.api.travelsisters.model.UsuarioModel;
 import com.api.travelsisters.model.ViagemModel;
@@ -76,4 +76,4 @@ public class Teste {
         }
         while (opcaoEscolhida != 0);
     }
-}
+}*/
