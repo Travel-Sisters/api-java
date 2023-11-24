@@ -21,9 +21,11 @@ public class ViagemModel {
     @NotNull
     @Column(name = "data_viagem")
     private LocalDate data;
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "ponto_embarque")
     private EnderecosModel pontoEmbarque;
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "ponto_desembarque")
     private EnderecosModel pontoDesembarque;
@@ -36,9 +38,11 @@ public class ViagemModel {
     @Column(name = "valor")
     @NotNull
     private Double valor;
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "motorista")
     private MotoristaModel motorista;
+    @NotNull
     @Column(name = "status_viagem")
     private String statusViagem;
 
