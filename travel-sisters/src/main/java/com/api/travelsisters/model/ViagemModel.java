@@ -42,7 +42,7 @@ public class ViagemModel {
     @ManyToOne
     @JoinColumn(name = "motorista")
     private MotoristaModel motorista;
-    @NotNull
+
     @Column(name = "status_viagem")
     private String statusViagem;
 
@@ -53,7 +53,7 @@ public class ViagemModel {
     public ViagemModel(int id, LocalDate data, EnderecosModel pontoEmbarque,
                        EnderecosModel pontoDesembarque, String descricao,
                        LocalTime horario, Double valor,
-                       MotoristaModel motorista, String statusViagem) {
+                       MotoristaModel motorista) {
         this.id = id;
         this.data = data;
         this.pontoEmbarque = pontoEmbarque;
@@ -62,7 +62,6 @@ public class ViagemModel {
         this.horario = horario;
         this.valor = valor;
         this.motorista = motorista;
-        this.statusViagem = statusViagem;
     }
 
     public MotoristaModel getMotorista() {
@@ -148,6 +147,7 @@ public class ViagemModel {
                 ", horario=" + horario +
                 ", valor=" + valor +
                 ", motorista=" + motorista +
+                ", statusViagem='" + statusViagem + '\'' +
                 '}';
     }
 }

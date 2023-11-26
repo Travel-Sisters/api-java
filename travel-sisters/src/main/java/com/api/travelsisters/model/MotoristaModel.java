@@ -27,18 +27,15 @@ public class MotoristaModel {
     @ManyToOne
     @JoinColumn(name = "usuario")
     private UsuarioModel usuario;
-    @Column(name = "handler")
-    private Integer handler;
 
 
     public MotoristaModel(int id, String cnh, String placaVan, EmpresaModel fkEmpresa,
-                          UsuarioModel usuario, Integer handler) {
+                          UsuarioModel usuario) {
         this.id = id;
         this.cnh = cnh;
         this.placaVan = placaVan;
         this.fkEmpresa = fkEmpresa;
         this.usuario = usuario;
-        this.handler = handler;
     }
 
     public MotoristaModel() {
@@ -85,13 +82,6 @@ public class MotoristaModel {
         this.usuario = fkUsuario;
     }
 
-    public Integer getHandler() {
-        return handler;
-    }
-
-    public void setHandler(Integer handler) {
-        this.handler = handler;
-    }
 
     @Override
     public String toString() {
@@ -101,7 +91,6 @@ public class MotoristaModel {
                 ", placaVan='" + placaVan + '\'' +
                 ", fkEmpresa=" + fkEmpresa +
                 ", fkUsuario=" + usuario +
-                ", handler=" + handler +
                 '}';
     }
 }

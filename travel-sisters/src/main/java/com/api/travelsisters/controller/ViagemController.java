@@ -109,6 +109,7 @@ public class ViagemController {
 
     }
 
+    @CrossOrigin
     @GetMapping("/pilha/{idMotorista}")
     public ResponseEntity<String> desfazerViagem(@PathVariable Integer idMotorista) {
         List<ViagemModel> listaViagem = repository.findByMotoristaId(idMotorista);
@@ -130,7 +131,7 @@ public class ViagemController {
             fila.insert(viagem);
         }
         fila.ordenar();
-        repository.atualizarCampoByMotoristaId(fila.peek().getId(),"concluído");
+        repository.atualizarCampoByMotoristaId(fila.peek().getId(), "concluído");
         fila.poll();
         fila.exibe();
         return ResponseEntity.status(201).body("Viagem removida da fila com sucesso");
