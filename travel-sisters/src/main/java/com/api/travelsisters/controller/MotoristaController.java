@@ -47,17 +47,24 @@ public class MotoristaController {
     @CrossOrigin
     @PostMapping("/cadastrar/{idUsuario}")
     public ResponseEntity<String> cadastrar
-            (@Valid @RequestBody MotoristaModel cadastro, @PathVariable Integer idUsuario) {
+            (@Valid @RequestBody MotoristaModel cadastro,
+             @PathVariable Integer idUsuario) {
 
         EmpresaModel empresaModel = empresaRepository.encontrarPorId(cadastro.getFkEmpresa().getId());
         UsuarioModel usuarioModel = usuarioRepository.encontrarPorId(idUsuario);
 
-        if (empresaModel == null || usuarioModel == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("fk da empresa ou usuário não encontrados no banco de dados");
+        if (empresaModel == null) {
+            if(usuarioModel != null) {
+                usuarioRepository.delete(usuarioModel);
+            }
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("fk da empresa não encontrado no banco de dados");
+
+        } else if (usuarioModel == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("usuário não encontrados no banco de dados");
         }
 
-        //UserHandshakeHandler userH = new UserHandshakeHandler();
-        //cadastro.setHandler(userH.hashCode());
         cadastro.setFkEmpresa(empresaModel);
         cadastro.setUsuario(usuarioModel);
         repository.save(cadastro);

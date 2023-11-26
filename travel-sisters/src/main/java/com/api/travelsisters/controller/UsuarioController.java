@@ -91,7 +91,7 @@ public class UsuarioController {
 
     @GetMapping("/verificar-perfil/{idUsuario}")
     public ResponseEntity<MotoristaModel> verificarPerfil(@PathVariable Integer idUsuario) {
-        MotoristaModel motorista = repositoryMotorista.encontrarPorUsuarioId(idUsuario);
+        MotoristaModel motorista = repositoryMotorista.findById(idUsuario).get();
 
         if (motorista == null) {
             return ResponseEntity.status(204).build();

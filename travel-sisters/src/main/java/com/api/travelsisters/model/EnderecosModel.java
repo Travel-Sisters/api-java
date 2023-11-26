@@ -30,13 +30,18 @@ public class EnderecosModel {
     @Column(name = "end_api")
     private String endApi;
 
-    public EnderecosModel(int id, String rua, Integer numero, String bairro, String cidade, String endApi) {
+    @Column(name = "nome")
+    private String nome;
+
+    public EnderecosModel(int id, String rua, Integer numero, String bairro,
+                          String cidade, String endApi, String nome) {
         this.id = id;
         this.rua = rua;
         this.numero = numero;
         this.bairro = bairro;
         this.cidade = cidade;
         this.endApi = endApi;
+        this.nome = nome;
     }
 
     public EnderecosModel() {
@@ -90,6 +95,14 @@ public class EnderecosModel {
         this.endApi = endApi;
     }
 
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
     @Override
     public String toString() {
         return "EnderecosModel{" +
@@ -99,6 +112,7 @@ public class EnderecosModel {
                 ", bairro='" + bairro + '\'' +
                 ", cidade='" + cidade + '\'' +
                 ", endApi='" + endApi + '\'' +
+                ", nome='" + nome + '\'' +
                 '}';
     }
 }

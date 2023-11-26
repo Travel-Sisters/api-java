@@ -21,9 +21,11 @@ public class ViagemModel {
     @NotNull
     @Column(name = "data_viagem")
     private LocalDate data;
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "ponto_embarque")
     private EnderecosModel pontoEmbarque;
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "ponto_desembarque")
     private EnderecosModel pontoDesembarque;
@@ -36,9 +38,11 @@ public class ViagemModel {
     @Column(name = "valor")
     @NotNull
     private Double valor;
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "motorista")
     private MotoristaModel motorista;
+
     @Column(name = "status_viagem")
     private String statusViagem;
 
@@ -49,7 +53,7 @@ public class ViagemModel {
     public ViagemModel(int id, LocalDate data, EnderecosModel pontoEmbarque,
                        EnderecosModel pontoDesembarque, String descricao,
                        LocalTime horario, Double valor,
-                       MotoristaModel motorista, String statusViagem) {
+                       MotoristaModel motorista) {
         this.id = id;
         this.data = data;
         this.pontoEmbarque = pontoEmbarque;
@@ -58,7 +62,6 @@ public class ViagemModel {
         this.horario = horario;
         this.valor = valor;
         this.motorista = motorista;
-        this.statusViagem = statusViagem;
     }
 
     public MotoristaModel getMotorista() {
@@ -144,6 +147,7 @@ public class ViagemModel {
                 ", horario=" + horario +
                 ", valor=" + valor +
                 ", motorista=" + motorista +
+                ", statusViagem='" + statusViagem + '\'' +
                 '}';
     }
 }
