@@ -1,6 +1,5 @@
 package com.api.travelsisters.controller;
 
-import com.api.travelsisters.UserHandshakeHandler;
 import com.api.travelsisters.model.EmpresaModel;
 import com.api.travelsisters.model.MotoristaModel;
 import com.api.travelsisters.model.UsuarioModel;
@@ -8,14 +7,12 @@ import com.api.travelsisters.repository.EmpresaRepository;
 import com.api.travelsisters.repository.MotoristaRepository;
 import com.api.travelsisters.repository.UsuarioRepository;
 import jakarta.validation.Valid;
-import jakarta.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/motoristas")
