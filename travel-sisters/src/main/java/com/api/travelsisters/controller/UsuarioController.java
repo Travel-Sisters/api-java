@@ -13,8 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/usuarios")
@@ -91,12 +93,14 @@ public class UsuarioController {
 
     @GetMapping("/verificar-perfil/{idUsuario}")
     public ResponseEntity<MotoristaModel> verificarPerfil(@PathVariable Integer idUsuario) {
-        MotoristaModel motorista = repositoryMotorista.findById(idUsuario).get();
 
-        if (motorista == null) {
-            return ResponseEntity.status(204).build();
-        }
-        return ResponseEntity.status(200).body(motorista);
+        Optional<MotoristaModel> motorista = repositoryMotorista.findById(idUsuario);
+
+        return motorista
+                .map(motoristaModel -> ResponseEntity.status(200)
+                .body(motoristaModel))
+                .orElseGet(() -> ResponseEntity.status(204).build());
+
     }
 }
 

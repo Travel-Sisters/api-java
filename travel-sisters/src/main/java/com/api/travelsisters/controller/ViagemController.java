@@ -47,6 +47,7 @@ public class ViagemController {
         return ResponseEntity.of(repository.findById(id));
     }
 
+    @CrossOrigin
     @PostMapping("/cadastrar/{idMotorista}")
     public ResponseEntity<ViagemModel> cadastrar
             (@Valid @RequestBody ViagemModel cadastro,
