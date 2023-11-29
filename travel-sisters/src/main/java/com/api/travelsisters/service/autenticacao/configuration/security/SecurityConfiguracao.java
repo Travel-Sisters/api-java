@@ -50,6 +50,7 @@ public class SecurityConfiguracao {
             new AntPathRequestMatcher("/usuarios/verificar-perfil/{idUsuario}"),
 
             new AntPathRequestMatcher("/motoristas/listar/{id}"),
+            new AntPathRequestMatcher("/motoristas/alterar/{idMotorista}"),
             new AntPathRequestMatcher("/motoristas/buscarPorId/{id}"),
             new AntPathRequestMatcher("/motoristas/cadastrar/{idUsuario}"),
             new AntPathRequestMatcher("/motoristas/deletar/{id}"),
@@ -62,6 +63,13 @@ public class SecurityConfiguracao {
             new AntPathRequestMatcher("/viagens/txt/{idMotorista}"),
             new AntPathRequestMatcher("/viagens/pilha/{idMotorista}"),
             new AntPathRequestMatcher("/viagens/fila/{idMotorista}"),
+
+            new AntPathRequestMatcher("/chat-viagem/{idUsuario}/{idViagem}/{idHistAvaliacao}"),
+            new AntPathRequestMatcher("/chat-viagem/"),
+
+            new AntPathRequestMatcher("/chat/"),
+            new AntPathRequestMatcher("/chat/{idViagem}"),
+            new AntPathRequestMatcher("/chat/{idViagem}/ultima"),
 
             new AntPathRequestMatcher("/enderecos/"),
 
