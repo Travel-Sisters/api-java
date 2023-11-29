@@ -4,6 +4,7 @@ import com.api.travelsisters.model.ChatModel;
 import com.api.travelsisters.repository.ChatRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,7 +12,8 @@ import java.util.List;
 
 @RestController()
 @RequestMapping("/chat")
-public class ChatContrller {
+@CrossOrigin("*")
+public class ChatController {
 
     @Autowired
     ChatRepository repository;
@@ -22,8 +24,8 @@ public class ChatContrller {
         List lista = repository.findAllByViagem_Id(idViagem);
 
         return lista.isEmpty() ?
-                ResponseEntity.status(204).build()
-                : ResponseEntity.status(200).body(lista);
+                ResponseEntity.status(HttpStatus.NO_CONTENT).build() :
+                ResponseEntity.status(HttpStatus.OK).body(lista);
 
     }
 
@@ -31,7 +33,7 @@ public class ChatContrller {
     public ResponseEntity publicarMensagem(@Valid @RequestBody ChatModel chat) {
 
         repository.save(chat);
-        return ResponseEntity.status(200).body(chat);
+        return ResponseEntity.status(HttpStatus.CREATED).body(chat);
 
     }
 
@@ -40,8 +42,8 @@ public class ChatContrller {
 
         ChatModel cm = repository.findTopByViagem_IdOrderByIdDesc(idViagem);
         return cm == null ?
-                ResponseEntity.status(404).build() :
-                ResponseEntity.status(200).body(cm  );
+                ResponseEntity.status(HttpStatus.BAD_REQUEST).build() :
+                ResponseEntity.status(HttpStatus.OK).body(cm);
     }
 
 }
