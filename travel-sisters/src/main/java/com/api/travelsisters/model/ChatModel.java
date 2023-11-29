@@ -28,21 +28,15 @@ public class ChatModel {
 
     @NotNull
     @ManyToOne
-    @JoinColumn(name = "viagem")
-    private ViagemModel viagem;
+    @JoinColumn(name = "chat_viagem")
+    private ChatViagemModel chatViagem;
 
-    @NotNull
-    @ManyToOne
-    @JoinColumn(name = "usuario")
-    private UsuarioModel usuario;
-
-    public ChatModel(Integer id, String mensagem, LocalDate data, LocalTime hora, ViagemModel viagem, UsuarioModel usuario) {
+    public ChatModel(Integer id, String mensagem, LocalDate data, LocalTime hora, ChatViagemModel chatViagem) {
         this.id = id;
         this.mensagem = mensagem;
         this.data = data;
         this.hora = hora;
-        this.viagem = viagem;
-        this.usuario = usuario;
+        this.chatViagem = chatViagem;
     }
 
     public Integer getId() {
@@ -77,19 +71,12 @@ public class ChatModel {
         this.hora = hora;
     }
 
-    public ViagemModel getViagem() {
-        return viagem;
+    public ChatViagemModel getChatViagem() {
+        return chatViagem;
     }
 
-    public void setViagem(ViagemModel viagem) {
-        this.viagem = viagem;
+    public void setChatViagem(ChatViagemModel chatViagem) {
+        this.chatViagem = chatViagem;
     }
 
-    public UsuarioModel getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(UsuarioModel usuario) {
-        this.usuario = usuario;
-    }
 }
