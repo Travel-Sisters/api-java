@@ -2,7 +2,13 @@ package com.api.travelsisters.pilhaFila;
 
 import com.api.travelsisters.csv.ListaObj;
 import com.api.travelsisters.model.ViagemModel;
+import org.springframework.cglib.core.Local;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+
+import java.time.chrono.ChronoLocalDate;
 import java.util.List;
 
 public class Fila {
@@ -84,27 +90,45 @@ public class Fila {
         }
     }
 
-    public void ordenar() {
+    public boolean ordenar() {
 
         for (int i = 0; i < tamanho - 1; i++) {
             int indiceMenor = i;
             for (int j = i + 1; j < tamanho; j++) {
-                if (fila[j].getData().compareTo(fila[indiceMenor].getData()) < 0) {
+                int comparacaoData = fila[j].getData().compareTo(fila[indiceMenor].getData());
+                if (comparacaoData < 0 || (comparacaoData == 0 && fila[j].getHorario()
+                        .compareTo(fila[indiceMenor].getHorario()) < 0)) {
                     indiceMenor = j;
                 }
             }
+
             // Troca os elementos
             ViagemModel temp = fila[indiceMenor];
             fila[indiceMenor] = fila[i];
             fila[i] = temp;
-
         }
+
         for (ViagemModel viagem : fila){
             if(viagem.getStatusViagem().equalsIgnoreCase("concluído")){
                 poll();
             }
         }
+
+        LocalDate dataAgora = LocalDate.now();
+        LocalTime horaAgora = LocalTime.now();
+        LocalTime horaFutura = horaAgora.plusHours(4);
+
+        LocalDate dataDoElemento = fila[0].getData();
+        int resultado = dataAgora.compareTo(dataDoElemento);
+        if (resultado >= 0) {
+            if (horaFutura.isAfter(fila[0].getHorario())) {
+                System.out.println("true");
+                return true;
+            }
+        }
+
         System.out.println("Fila ordenada por data.");
+        return false;
     }
 
     /* Usado nos testes  - complete para que fique certo */

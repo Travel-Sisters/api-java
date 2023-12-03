@@ -1,6 +1,8 @@
 package com.api.travelsisters.controller;
 
 
+import com.api.travelsisters.dto.AlterarPerfilMotoristaDTO;
+import com.api.travelsisters.dto.AlterarPerfilPassageiraDTO;
 import com.api.travelsisters.dto.LoginDTO;
 import com.api.travelsisters.model.MotoristaModel;
 import com.api.travelsisters.repository.MotoristaRepository;
@@ -63,10 +65,27 @@ public class UsuarioController {
     }
 
     @CrossOrigin
-    @PutMapping("/alterar")
-    public ResponseEntity<UsuarioModel> alterar
-            (@Valid @RequestBody UsuarioModel cadastro) {
-        return ResponseEntity.status(200).body(repository.save(cadastro));
+    @PutMapping("/alterar/{idUsuario}")
+    public ResponseEntity alterar
+            (@RequestBody AlterarPerfilPassageiraDTO passageiraDTO,
+             @PathVariable Integer idUsuario) {
+
+        if(passageiraDTO.getNome() == null || passageiraDTO.getNome().isEmpty())
+            passageiraDTO.setNome(null);
+
+        if(passageiraDTO.getEmail() == null || passageiraDTO.getEmail().isEmpty())
+            passageiraDTO.setEmail(null);
+
+        if(passageiraDTO.getSenha() == null || passageiraDTO.getSenha().isEmpty())
+            passageiraDTO.setSenha(null);
+
+        repository.atualizarPerfilUsuario(
+                idUsuario,
+                passageiraDTO.getNome(),
+                passageiraDTO.getEmail(),
+                passageiraDTO.getSenha());
+
+        return ResponseEntity.status(200).build();
     }
 
     @CrossOrigin
@@ -93,14 +112,13 @@ public class UsuarioController {
 
     @GetMapping("/verificar-perfil/{idUsuario}")
     public ResponseEntity<MotoristaModel> verificarPerfil(@PathVariable Integer idUsuario) {
+        MotoristaModel motorista = repositoryMotorista.encontrarPorUsuarioId(idUsuario);
 
-        Optional<MotoristaModel> motorista = repositoryMotorista.findById(idUsuario);
+        if(motorista == null){
+            return ResponseEntity.status(204).build();
+        }
 
-        return motorista
-                .map(motoristaModel -> ResponseEntity.status(200)
-                .body(motoristaModel))
-                .orElseGet(() -> ResponseEntity.status(204).build());
-
+        return ResponseEntity.status(200).body(motorista);
     }
 }
 

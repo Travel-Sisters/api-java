@@ -45,7 +45,7 @@ public class SecurityConfiguracao {
             new AntPathRequestMatcher("/usuarios/cadastrar"),
             new AntPathRequestMatcher("/usuarios/listar"),
             new AntPathRequestMatcher("/usuarios/buscarPorId/{id}"),
-            new AntPathRequestMatcher("/usuarios/alterar"),
+            new AntPathRequestMatcher("/usuarios/alterar/{idUsuario}"),
             new AntPathRequestMatcher("/usuarios/deletar/{id}"),
             new AntPathRequestMatcher("/usuarios/verificar-perfil/{idUsuario}"),
 

@@ -131,11 +131,16 @@ public class ViagemController {
         for (ViagemModel viagem : listaViagem) {
             fila.insert(viagem);
         }
-        fila.ordenar();
-        repository.atualizarCampoByMotoristaId(fila.peek().getId(), "concluído");
-        fila.poll();
-        fila.exibe();
-        return ResponseEntity.status(201).body("Viagem removida da fila com sucesso");
-    }
+        boolean validacao = fila.ordenar();
+        if (validacao){
+            repository.atualizarCampoByMotoristaId(fila.peek().getId(), "concluído");
+            fila.poll();
+            fila.exibe();
+            return ResponseEntity.status(200).body("finalizada");
+        } else {
+            fila.exibe();
+            return ResponseEntity.status(404).body("não finalizada");
+        }
 
+    }
 }
