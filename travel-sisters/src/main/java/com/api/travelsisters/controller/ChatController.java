@@ -29,7 +29,7 @@ public class ChatController {
 
     }
 
-    @PostMapping("/")
+    @PostMapping("/publicar")
     public ResponseEntity publicarMensagem(@Valid @RequestBody ChatModel chat) {
 
         repository.save(chat);
@@ -38,11 +38,11 @@ public class ChatController {
     }
 
     @GetMapping("/{idViagem}/ultima")
-    public ResponseEntity getUltimaMensagem(@Valid @RequestBody Integer idViagem) {
+    public ResponseEntity<?> getUltimaMensagem(@Valid @RequestBody Integer idViagem) {
 
         ChatModel cm = repository.findTopByViagem_IdOrderByIdDesc(idViagem);
         return cm == null ?
-                ResponseEntity.status(HttpStatus.BAD_REQUEST).build() :
+                ResponseEntity.status(HttpStatus.BAD_REQUEST).body("idViagem not found") :
                 ResponseEntity.status(HttpStatus.OK).body(cm);
     }
 
