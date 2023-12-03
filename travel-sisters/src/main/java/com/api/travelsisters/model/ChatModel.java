@@ -42,6 +42,18 @@ public class ChatModel {
         this.viagem = viagem;
     }
 
+    public ChatModel(Integer id, String mensagem, LocalDate data, LocalTime hora, ViagemModel viagem, LocalDate dtChegada) {
+        this.id = id;
+        this.mensagem = mensagem;
+        this.data = data;
+        this.hora = hora;
+        this.viagem = viagem;
+        this.dtChegada = dtChegada;
+    }
+
+    public ChatModel() {
+    }
+
     public Integer getId() {
         return id;
     }

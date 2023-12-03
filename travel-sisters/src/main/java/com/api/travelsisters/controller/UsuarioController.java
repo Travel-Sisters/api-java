@@ -90,13 +90,16 @@ public class UsuarioController {
 
     @CrossOrigin
     @DeleteMapping("/deletar/{id}")
-    public ResponseEntity<String> deletar(@Valid @PathVariable int id) {
+    public ResponseEntity<?> deletar(@Valid @PathVariable int id) {
 
         try {
             UsuarioModel cadastro = findByID(id).getBody();
-            assert cadastro != null;
-            this.repository.delete(cadastro);
-            return ResponseEntity.status(200).build();
+            if (cadastro != null) {
+                this.repository.delete(cadastro);
+                return ResponseEntity.status(200).build();
+            } else {
+                return ResponseEntity.status(404).build();
+            }
         } catch (Exception error) {
             return ResponseEntity.status(404).build();
         }
