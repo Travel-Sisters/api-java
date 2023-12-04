@@ -44,7 +44,7 @@ class UsuarioControllerTest {
 
     @Test
     @DisplayName("Listar deve retornar que nao ha usuarios cadastrados, NO_CONTENT")
-    void listarUsuarios_quandoNaoExistemUsuarios() {
+    void listarUsuarios_quandoNaoExistemUsuariosNO_CONTENT() {
         when(repository.findAll()).thenReturn(List.of());
 
         ResponseEntity<List<UsuarioModel>> response = controller.listar();
@@ -54,7 +54,7 @@ class UsuarioControllerTest {
 
     @Test
     @DisplayName("Listar deve retornar o usuario cadastrado, OK")
-    void listarUsuarios_quandoExistemUsuarios() {
+    void listarUsuarios_quandoExistemUsuariosOK() {
         UsuarioModel usuario = new UsuarioModel();
         when(repository.findAll()).thenReturn(Arrays.asList(usuario));
 
@@ -66,7 +66,7 @@ class UsuarioControllerTest {
 
     @Test
     @DisplayName("Buscar ID deve retornar usuario existe com o mesmo ID, OK")
-    void buscarPorId_quandoExisteUsuario() {
+    void buscarPorId_quandoExisteUsuarioOK() {
         UsuarioModel u = new UsuarioModel();
         u.setId(1);
         when(repository.findById(1)).thenReturn(Optional.of(u));
@@ -79,7 +79,7 @@ class UsuarioControllerTest {
 
     @Test
     @DisplayName("Buscar ID deve retornar execao por nao encontrar usuario, NOT_FOUND")
-    void buscarPorId_quandoNaoExisteUsuario() {
+    void buscarPorId_quandoNaoExisteUsuarioNOT_FOUND() {
         when(repository.findById(1)).thenReturn(Optional.empty());
 
         ResponseEntity<UsuarioModel> response = controller.findByID(1);
@@ -89,7 +89,7 @@ class UsuarioControllerTest {
 
     @Test
     @DisplayName("Deletar deve excluir o usuario com base no id, OK")
-    void deletarUsuarioPorIdOk() {
+    void deletarUsuarioPorIdOK() {
         UsuarioModel u = new UsuarioModel();
         when(repository.findById(1)).thenReturn(Optional.of(u));
 
@@ -100,7 +100,7 @@ class UsuarioControllerTest {
 
     @Test
     @DisplayName("Deletar deve retornar excecao por nao encontrar usuario, NOT_FOUND")
-    void deletarUsuarioPorIdNotFound() {
+    void deletarUsuarioPorIdNotFoundNOT_FOUND() {
         when(repository.findById(1)).thenReturn(Optional.empty());
 
         ResponseEntity<?> response = controller.deletar(1);
@@ -111,7 +111,7 @@ class UsuarioControllerTest {
 
     @Test
     @DisplayName("Verificar perfil do motorista existente, OK")
-    void verificarPerfilMotoristaExistente() {
+    void verificarPerfilMotoristaExistenteOK() {
         MotoristaModel motoristaModel = new MotoristaModel(); // Mock ou dados para o motorista
         when(repositoryMotorista.encontrarPorUsuarioId(1)).thenReturn(motoristaModel);
 
@@ -123,7 +123,7 @@ class UsuarioControllerTest {
 
     @Test
     @DisplayName("Verificar perfil do motorista inexistente, NO_CONTENT")
-    void verificarPerfilMotoristaInexistente() {
+    void verificarPerfilMotoristaInexistenteNO_CONTENT() {
         when(repositoryMotorista.encontrarPorUsuarioId(1)).thenReturn(null);
 
         ResponseEntity<MotoristaModel> response = controller.verificarPerfil(1);
@@ -134,7 +134,7 @@ class UsuarioControllerTest {
 
     @Test
     @DisplayName("Alterar perfil do usuário com informações válidas, OK")
-    void alterarPerfilUsuarioComInfosValidas() {
+    void alterarPerfilUsuarioComInfosValidasOK() {
         AlterarPerfilPassageiraDTO dto = new AlterarPerfilPassageiraDTO();
         dto.setNome("Novo Nome");
         dto.setEmail("novo@email.com");
@@ -142,7 +142,7 @@ class UsuarioControllerTest {
 
         when(repository.atualizarPerfilUsuario(
                 eq(1), eq(dto.getNome()), eq(dto.getEmail()), eq(dto.getSenha())))
-                .thenReturn(1); // Supondo que atualizar com sucesso retorne 1
+                .thenReturn(1);
 
         ResponseEntity<?> response = controller.alterar(dto, 1);
 
@@ -151,12 +151,12 @@ class UsuarioControllerTest {
 
     @Test
     @DisplayName("Alterar perfil do usuário com informações vazias, OK")
-    void alterarPerfilUsuarioComInfosVazias() {
+    void alterarPerfilUsuarioComInfosVaziasOK() {
         AlterarPerfilPassageiraDTO dto = new AlterarPerfilPassageiraDTO();
 
         when(repository.atualizarPerfilUsuario(
                 eq(1), eq(null), eq(null), eq(null)))
-                .thenReturn(1); // Supondo que atualizar com sucesso retorne 1
+                .thenReturn(1);
 
         ResponseEntity<?> response = controller.alterar(dto, 1);
 
@@ -165,14 +165,14 @@ class UsuarioControllerTest {
 
     @Test
     @DisplayName("Alterar perfil do usuário com informações nulas, OK")
-    void alterarPerfilUsuarioComInfosNulas() {
+    void alterarPerfilUsuarioComInfosNulasOK() {
         AlterarPerfilPassageiraDTO dto = new AlterarPerfilPassageiraDTO();
         dto.setNome(null);
         dto.setEmail(null);
         dto.setSenha(null);
 
         when(repository.atualizarPerfilUsuario(eq(1), eq(null), eq(null), eq(null)))
-                .thenReturn(1); // Supondo que atualizar com sucesso retorne 1
+                .thenReturn(1);
 
         ResponseEntity<?> response = controller.alterar(dto, 1);
 
