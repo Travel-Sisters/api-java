@@ -1,5 +1,7 @@
 package com.api.travelsisters.controller;
 
+import com.api.travelsisters.dto.AlterarPerfilPassageiraDTO;
+import com.api.travelsisters.model.MotoristaModel;
 import com.api.travelsisters.model.UsuarioModel;
 import com.api.travelsisters.repository.MotoristaRepository;
 import com.api.travelsisters.repository.UsuarioRepository;
@@ -19,6 +21,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest(classes = UsuarioController.class)
@@ -90,7 +93,7 @@ class UsuarioControllerTest {
         UsuarioModel u = new UsuarioModel();
         when(repository.findById(1)).thenReturn(Optional.of(u));
 
-        ResponseEntity<?> response = controller.deletar(1);
+        ResponseEntity response = controller.deletar(1);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
     }
@@ -103,5 +106,77 @@ class UsuarioControllerTest {
         ResponseEntity<?> response = controller.deletar(1);
 
         assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
+        assertEquals(null, response.getBody());
     }
+
+    @Test
+    @DisplayName("Verificar perfil do motorista existente, OK")
+    void verificarPerfilMotoristaExistente() {
+        MotoristaModel motoristaModel = new MotoristaModel(); // Mock ou dados para o motorista
+        when(repositoryMotorista.encontrarPorUsuarioId(1)).thenReturn(motoristaModel);
+
+        ResponseEntity<MotoristaModel> response = controller.verificarPerfil(1);
+
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(motoristaModel, response.getBody());
+    }
+
+    @Test
+    @DisplayName("Verificar perfil do motorista inexistente, NO_CONTENT")
+    void verificarPerfilMotoristaInexistente() {
+        when(repositoryMotorista.encontrarPorUsuarioId(1)).thenReturn(null);
+
+        ResponseEntity<MotoristaModel> response = controller.verificarPerfil(1);
+
+        assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
+        assertEquals(null, response.getBody());
+    }
+
+    @Test
+    @DisplayName("Alterar perfil do usuário com informações válidas, OK")
+    void alterarPerfilUsuarioComInfosValidas() {
+        AlterarPerfilPassageiraDTO dto = new AlterarPerfilPassageiraDTO();
+        dto.setNome("Novo Nome");
+        dto.setEmail("novo@email.com");
+        dto.setSenha("novaSenha");
+
+        when(repository.atualizarPerfilUsuario(
+                eq(1), eq(dto.getNome()), eq(dto.getEmail()), eq(dto.getSenha())))
+                .thenReturn(1); // Supondo que atualizar com sucesso retorne 1
+
+        ResponseEntity<?> response = controller.alterar(dto, 1);
+
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+    }
+
+    @Test
+    @DisplayName("Alterar perfil do usuário com informações vazias, OK")
+    void alterarPerfilUsuarioComInfosVazias() {
+        AlterarPerfilPassageiraDTO dto = new AlterarPerfilPassageiraDTO();
+
+        when(repository.atualizarPerfilUsuario(
+                eq(1), eq(null), eq(null), eq(null)))
+                .thenReturn(1); // Supondo que atualizar com sucesso retorne 1
+
+        ResponseEntity<?> response = controller.alterar(dto, 1);
+
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+    }
+
+    @Test
+    @DisplayName("Alterar perfil do usuário com informações nulas, OK")
+    void alterarPerfilUsuarioComInfosNulas() {
+        AlterarPerfilPassageiraDTO dto = new AlterarPerfilPassageiraDTO();
+        dto.setNome(null);
+        dto.setEmail(null);
+        dto.setSenha(null);
+
+        when(repository.atualizarPerfilUsuario(eq(1), eq(null), eq(null), eq(null)))
+                .thenReturn(1); // Supondo que atualizar com sucesso retorne 1
+
+        ResponseEntity<?> response = controller.alterar(dto, 1);
+
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+    }
+
 }

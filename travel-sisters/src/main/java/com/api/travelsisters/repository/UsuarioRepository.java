@@ -25,7 +25,7 @@ public interface UsuarioRepository extends JpaRepository<UsuarioModel, Integer> 
             "u.email = CASE WHEN :email IS NOT NULL THEN :email ELSE u.email END, " +
             "u.senha = CASE WHEN :senha IS NOT NULL THEN :senha ELSE u.senha END " +
             "WHERE u.id = :id")
-    void atualizarPerfilUsuario(
+    int atualizarPerfilUsuario(
             @Param("id") Integer id,
             @Param("nome") String nome,
             @Param("email") String email,

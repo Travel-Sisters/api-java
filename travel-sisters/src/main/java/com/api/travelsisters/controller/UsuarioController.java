@@ -12,6 +12,7 @@ import com.api.travelsisters.service.UsuarioService;
 import jakarta.validation.Valid;
 import jakarta.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
@@ -90,7 +91,7 @@ public class UsuarioController {
 
     @CrossOrigin
     @DeleteMapping("/deletar/{id}")
-    public ResponseEntity<?> deletar(@Valid @PathVariable int id) {
+    public ResponseEntity deletar(@Valid @PathVariable int id) {
 
         try {
             UsuarioModel cadastro = findByID(id).getBody();
@@ -118,10 +119,10 @@ public class UsuarioController {
         MotoristaModel motorista = repositoryMotorista.encontrarPorUsuarioId(idUsuario);
 
         if(motorista == null){
-            return ResponseEntity.status(204).build();
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
         }
 
-        return ResponseEntity.status(200).body(motorista);
+        return ResponseEntity.status(HttpStatus.OK).body(motorista);
     }
 }
 
