@@ -1,6 +1,8 @@
 package com.api.travelsisters.controller;
 
 
+import com.api.travelsisters.dto.AlterarPerfilMotoristaDTO;
+import com.api.travelsisters.dto.AlterarPerfilPassageiraDTO;
 import com.api.travelsisters.dto.LoginDTO;
 import com.api.travelsisters.model.MotoristaModel;
 import com.api.travelsisters.repository.MotoristaRepository;
@@ -10,6 +12,7 @@ import com.api.travelsisters.service.UsuarioService;
 import jakarta.validation.Valid;
 import jakarta.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
@@ -63,21 +66,41 @@ public class UsuarioController {
     }
 
     @CrossOrigin
-    @PutMapping("/alterar")
-    public ResponseEntity<UsuarioModel> alterar
-            (@Valid @RequestBody UsuarioModel cadastro) {
-        return ResponseEntity.status(200).body(repository.save(cadastro));
+    @PutMapping("/alterar/{idUsuario}")
+    public ResponseEntity alterar
+            (@RequestBody AlterarPerfilPassageiraDTO passageiraDTO,
+             @PathVariable Integer idUsuario) {
+
+        if(passageiraDTO.getNome() == null || passageiraDTO.getNome().isEmpty())
+            passageiraDTO.setNome(null);
+
+        if(passageiraDTO.getEmail() == null || passageiraDTO.getEmail().isEmpty())
+            passageiraDTO.setEmail(null);
+
+        if(passageiraDTO.getSenha() == null || passageiraDTO.getSenha().isEmpty())
+            passageiraDTO.setSenha(null);
+
+        repository.atualizarPerfilUsuario(
+                idUsuario,
+                passageiraDTO.getNome(),
+                passageiraDTO.getEmail(),
+                passageiraDTO.getSenha());
+
+        return ResponseEntity.status(200).build();
     }
 
     @CrossOrigin
     @DeleteMapping("/deletar/{id}")
-    public ResponseEntity<String> deletar(@Valid @PathVariable int id) {
+    public ResponseEntity deletar(@Valid @PathVariable int id) {
 
         try {
             UsuarioModel cadastro = findByID(id).getBody();
-            assert cadastro != null;
-            this.repository.delete(cadastro);
-            return ResponseEntity.status(200).build();
+            if (cadastro != null) {
+                this.repository.delete(cadastro);
+                return ResponseEntity.status(200).build();
+            } else {
+                return ResponseEntity.status(404).build();
+            }
         } catch (Exception error) {
             return ResponseEntity.status(404).build();
         }
@@ -93,14 +116,13 @@ public class UsuarioController {
 
     @GetMapping("/verificar-perfil/{idUsuario}")
     public ResponseEntity<MotoristaModel> verificarPerfil(@PathVariable Integer idUsuario) {
+        MotoristaModel motorista = repositoryMotorista.encontrarPorUsuarioId(idUsuario);
 
-        Optional<MotoristaModel> motorista = repositoryMotorista.findById(idUsuario);
+        if(motorista == null){
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        }
 
-        return motorista
-                .map(motoristaModel -> ResponseEntity.status(200)
-                .body(motoristaModel))
-                .orElseGet(() -> ResponseEntity.status(204).build());
-
+        return ResponseEntity.status(HttpStatus.OK).body(motorista);
     }
 }
 

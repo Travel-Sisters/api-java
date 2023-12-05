@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
+import org.springframework.security.core.parameters.P;
 
 import java.util.List;
 
@@ -22,6 +23,9 @@ public interface ViagemRepository extends JpaRepository<ViagemModel, Integer> {
     @Transactional
     @Query("UPDATE ViagemModel v SET v.statusViagem = :status WHERE v.id = :id")
     void atualizarCampoByMotoristaId(@Param("id") int id, @Param("status") String status);
+
+    @Query("SELECT v FROM ViagemModel v WHERE v.id = :id")
+    ViagemModel encontrarPorId(int id);
 
 }
 
