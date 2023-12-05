@@ -125,8 +125,25 @@ public class ViagemController {
     }
 
     @GetMapping("/fila/{idMotorista}")
-    public ResponseEntity<String> terminarViagem(@PathVariable Integer idMotorista) {
-        List<ViagemModel> listaViagem = repository.findByMotoristaId(idMotorista);
+    public ResponseEntity<List<ViagemModel>> terminarViagem(@PathVariable Integer idMotorista) {
+        List<ViagemModel> listaViagem = listar().getBody();
+        if (listaViagem != null && !listaViagem.isEmpty()) {
+            Fila fila = new Fila(listaViagem.size());
+            for (ViagemModel viagem : listaViagem) {
+                fila.insert(viagem);
+            }
+            System.out.println("Fila");
+            fila.ordenar();
+            fila.exibe();
+            while (fila.getTamanho() > 3) {
+                fila.poll();
+            }
+            System.out.println("Fila após refatorar");
+            fila.exibe();
+            return ResponseEntity.status(200).body(listaViagem);
+        }
+        return ResponseEntity.status(404).build();
+        /*List<ViagemModel> listaViagem = repository.findByMotoristaId(idMotorista);
         Fila fila = new Fila(listaViagem.size());
         for (ViagemModel viagem : listaViagem) {
             fila.insert(viagem);
@@ -140,7 +157,7 @@ public class ViagemController {
         } else {
             fila.exibe();
             return ResponseEntity.status(404).body("não finalizada");
-        }
+        }*/
 
     }
 }

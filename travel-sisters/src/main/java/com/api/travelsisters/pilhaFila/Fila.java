@@ -90,8 +90,7 @@ public class Fila {
         }
     }
 
-    public boolean ordenar() {
-
+    public void ordenar() {
         for (int i = 0; i < tamanho - 1; i++) {
             int indiceMenor = i;
             for (int j = i + 1; j < tamanho; j++) {
@@ -114,7 +113,7 @@ public class Fila {
             }
         }
 
-        LocalDate dataAgora = LocalDate.now();
+       /* LocalDate dataAgora = LocalDate.now();
         LocalTime horaAgora = LocalTime.now();
         LocalTime horaFutura = horaAgora.plusHours(4);
 
@@ -125,10 +124,9 @@ public class Fila {
                 System.out.println("true");
                 return true;
             }
-        }
+        }*/
 
-        System.out.println("Fila ordenada por data.");
-        return false;
+        System.out.println("Fila ordenada por data e hora");
     }
 
     /* Usado nos testes  - complete para que fique certo */
