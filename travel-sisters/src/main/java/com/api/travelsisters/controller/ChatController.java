@@ -18,6 +18,7 @@ public class ChatController {
     @Autowired
     ChatRepository repository;
 
+
     @GetMapping("/{idViagem}")
     public ResponseEntity<List<ChatModel>> getChat(@PathVariable Integer idViagem) {
 

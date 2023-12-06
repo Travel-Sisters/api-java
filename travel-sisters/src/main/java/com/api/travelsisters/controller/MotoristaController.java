@@ -100,9 +100,12 @@ public class MotoristaController {
 
         try {
             MotoristaModel cadastro = findByID(id).getBody();
-            assert cadastro != null;
-            this.repository.delete(cadastro);
-            return ResponseEntity.status(200).build();
+            if (cadastro != null) {
+                this.repository.delete(cadastro);
+                return ResponseEntity.status(200).build();
+            } else {
+                return ResponseEntity.status(404).build();
+            }
         } catch (Exception error) {
             return ResponseEntity.status(404).build();
         }

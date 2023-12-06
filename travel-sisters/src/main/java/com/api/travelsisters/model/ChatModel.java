@@ -15,18 +15,6 @@ public class ChatModel {
     private Integer id;
 
     @NotNull
-    @Column(name = "mensagem")
-    private String mensagem;
-
-    @NotNull
-    @Column(name = "data")
-    private LocalDate data;
-
-    @NotNull
-    @Column(name = "hora")
-    private LocalTime hora;
-
-    @NotNull
     @ManyToOne
     @JoinColumn(name = "viagem")
     private ViagemModel viagem;
@@ -34,19 +22,8 @@ public class ChatModel {
     @Column(name = "dt_chegada")
     private LocalDate dtChegada;
 
-    public ChatModel(Integer id, String mensagem, LocalDate data, LocalTime hora, ViagemModel viagem) {
+    public ChatModel(Integer id, ViagemModel viagem, LocalDate dtChegada) {
         this.id = id;
-        this.mensagem = mensagem;
-        this.data = data;
-        this.hora = hora;
-        this.viagem = viagem;
-    }
-
-    public ChatModel(Integer id, String mensagem, LocalDate data, LocalTime hora, ViagemModel viagem, LocalDate dtChegada) {
-        this.id = id;
-        this.mensagem = mensagem;
-        this.data = data;
-        this.hora = hora;
         this.viagem = viagem;
         this.dtChegada = dtChegada;
     }
@@ -62,28 +39,8 @@ public class ChatModel {
         this.id = id;
     }
 
-    public String getMensagem() {
-        return mensagem;
-    }
-
-    public void setMensagem(String mensagem) {
-        this.mensagem = mensagem;
-    }
-
-    public LocalDate getData() {
-        return data;
-    }
-
-    public void setData(LocalDate data) {
-        this.data = data;
-    }
-
-    public LocalTime getHora() {
-        return hora;
-    }
-
-    public void setHora(LocalTime hora) {
-        this.hora = hora;
+    public ViagemModel getViagem() {
+        return viagem;
     }
 
     public void setViagem(ViagemModel viagem) {
