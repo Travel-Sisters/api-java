@@ -30,7 +30,7 @@ public interface MotoristaRepository extends JpaRepository<MotoristaModel, Integ
            "u.email = CASE WHEN :email IS NOT NULL THEN :email ELSE u.email END, " +
            "u.senha = CASE WHEN :senha IS NOT NULL THEN :senha ELSE u.senha END " +
            "WHERE u.id = (SELECT m.usuario.id FROM MotoristaModel m WHERE m.id = :id)")
-   void atualizarPerfilMotorista(
+   int atualizarPerfilMotorista(
            @Param("id") Integer id,
            @Param("nome") String nome,
            @Param("email") String email,
