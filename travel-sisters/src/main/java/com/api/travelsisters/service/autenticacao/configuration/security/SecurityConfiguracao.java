@@ -63,6 +63,9 @@ public class SecurityConfiguracao {
             new AntPathRequestMatcher("/viagens/txt/{idMotorista}"),
             new AntPathRequestMatcher("/viagens/pilha/{idMotorista}"),
             new AntPathRequestMatcher("/viagens/fila/{idMotorista}"),
+            new AntPathRequestMatcher("/viagens/listarPorId/{idMotorista}"),
+            new AntPathRequestMatcher("/viagens/listarPorIdUsuario/{idUsuario}"),
+            new AntPathRequestMatcher("/viagens/cadastrarUsuarioViagem/{idViagem}/{idUsuario}"),
 
             new AntPathRequestMatcher("/chat/publicar"),
             new AntPathRequestMatcher("/chat/{idViagem}"),

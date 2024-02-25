@@ -2,14 +2,12 @@ package com.api.travelsisters.controller;
 
 import com.api.travelsisters.csv.GerenciadorDeArquivo;
 import com.api.travelsisters.csv.ListaObj;
-import com.api.travelsisters.model.EmpresaModel;
-import com.api.travelsisters.model.MotoristaModel;
-import com.api.travelsisters.model.UsuarioModel;
-import com.api.travelsisters.model.ViagemModel;
+import com.api.travelsisters.model.*;
 import com.api.travelsisters.pilhaFila.Fila;
 import com.api.travelsisters.pilhaFila.Pilha;
 import com.api.travelsisters.repository.MotoristaRepository;
 import com.api.travelsisters.repository.UsuarioRepository;
+import com.api.travelsisters.repository.UsuarioViagemRepository;
 import com.api.travelsisters.repository.ViagemRepository;
 import com.api.travelsisters.txt.GerenciadorArquivoTxt;
 import jakarta.validation.Valid;
@@ -29,6 +27,9 @@ import java.util.List;
 public class ViagemController {
     @Autowired
     private ViagemRepository repository;
+
+    @Autowired
+    private UsuarioViagemRepository repositoryUsuarioViagem;
     @Autowired
     private UsuarioRepository usuarioRepository;
     @Autowired
@@ -45,6 +46,24 @@ public class ViagemController {
     @GetMapping("buscarPorId/{id}")
     public ResponseEntity<ViagemModel> findByID(@Valid @PathVariable int id) {
         return ResponseEntity.of(repository.findById(id));
+    }
+
+    @CrossOrigin
+    @PostMapping("/cadastrarUsuarioViagem/{idViagem}/{idUsuario}")
+    public ResponseEntity<UsuarioViagemModel> cadastrarNaTabelaAssociativa (@PathVariable Integer idUsuario,
+                                                        @PathVariable Integer idViagem) {
+        UsuarioModel usuario = usuarioRepository.encontrarPorId(idUsuario);
+        ViagemModel viagem = repository.encontrarPorId(idViagem);
+        if (usuario == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        if (viagem == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        UsuarioViagemModel associativa = new UsuarioViagemModel(usuario,viagem);
+        repositoryUsuarioViagem.save(associativa);
+        System.out.println(associativa);
+        return ResponseEntity.status(204).body(associativa);
     }
 
     @CrossOrigin
@@ -96,7 +115,26 @@ public class ViagemController {
         GerenciadorDeArquivo.leArquivoCsv("viagens");
 
         return ResponseEntity.status(201).body("Arquivo csv gerado com sucesso");
+    }
 
+    @GetMapping("/listarPorId/{idMotorista}")
+    public ResponseEntity<List<ViagemModel>> listarPorId(@PathVariable Integer idMotorista) {
+        List<ViagemModel> listaViagem = repository.findByMotoristaId(idMotorista);
+        System.out.println(listaViagem);
+        if(listaViagem.isEmpty())
+            return ResponseEntity.status(404).build();
+
+        return ResponseEntity.status(201).body(listaViagem);
+    }
+
+    @GetMapping("/listarPorIdUsuario/{idUsuario}")
+    public ResponseEntity<List<ViagemModel>> listarPorIdUsuario(@PathVariable Integer idUsuario) {
+        List<ViagemModel> listaViagem = repositoryUsuarioViagem.findByUsuarioViagemId(idUsuario);
+        System.out.println(listaViagem);
+        if(listaViagem.isEmpty())
+            return ResponseEntity.status(404).build();
+
+        return ResponseEntity.status(201).body(listaViagem);
     }
 
     @GetMapping("/txt/{idMotorista}")
@@ -143,21 +181,6 @@ public class ViagemController {
             return ResponseEntity.status(200).body(listaViagem);
         }
         return ResponseEntity.status(404).build();
-        /*List<ViagemModel> listaViagem = repository.findByMotoristaId(idMotorista);
-        Fila fila = new Fila(listaViagem.size());
-        for (ViagemModel viagem : listaViagem) {
-            fila.insert(viagem);
-        }
-        boolean validacao = fila.ordenar();
-        if (validacao){
-            repository.atualizarCampoByMotoristaId(fila.peek().getId(), "concluído");
-            fila.poll();
-            fila.exibe();
-            return ResponseEntity.status(200).body("finalizada");
-        } else {
-            fila.exibe();
-            return ResponseEntity.status(404).body("não finalizada");
-        }*/
 
     }
 }
