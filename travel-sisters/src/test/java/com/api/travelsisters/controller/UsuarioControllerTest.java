@@ -100,7 +100,7 @@ class UsuarioControllerTest {
 
     @Test
     @DisplayName("Deletar deve retornar excecao por nao encontrar usuario, NOT_FOUND")
-    void deletarUsuarioPorIdNotFoundNOT_FOUND() {
+    void deletarUsuarioPorIdNOT_FOUND() {
         when(repository.findById(1)).thenReturn(Optional.empty());
 
         ResponseEntity<?> response = controller.deletar(1);

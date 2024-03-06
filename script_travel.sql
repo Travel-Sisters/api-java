@@ -7,6 +7,7 @@ select * from motorista;
 select * from viagem;
 select * from empresa;
 select * from endereco;
+select * from usuario_viagem;
 
 insert into empresa (id) values (1);
 insert into empresa (id) values (2);
@@ -26,5 +27,12 @@ insert endereco (bairro, cidade, end_api, nome ,numero, rua) VALUES
 
 SELECT * FROM viagem WHERE motorista = 1;
 select * from usuario where id = 2;
+
+SELECT v.*
+FROM viagem v
+JOIN usuario_viagem uv 
+ON v.id = uv.viagem_id
+JOIN usuario u ON uv.usuario_id = u.id
+WHERE u.id = '1';
 
 show tables;

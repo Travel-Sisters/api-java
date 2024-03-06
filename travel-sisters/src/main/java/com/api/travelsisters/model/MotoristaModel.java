@@ -27,15 +27,26 @@ public class MotoristaModel {
     @ManyToOne
     @JoinColumn(name = "usuario")
     private UsuarioModel usuario;
+    @Column(name = "telefone")
+    private String telefone;
 
 
     public MotoristaModel(int id, String cnh, String placaVan, EmpresaModel fkEmpresa,
-                          UsuarioModel usuario) {
+                          UsuarioModel usuario, String telefone) {
         this.id = id;
         this.cnh = cnh;
         this.placaVan = placaVan;
         this.fkEmpresa = fkEmpresa;
         this.usuario = usuario;
+        this.telefone = telefone;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 
     public MotoristaModel() {
@@ -89,8 +100,9 @@ public class MotoristaModel {
                 "id=" + id +
                 ", cnh='" + cnh + '\'' +
                 ", placaVan='" + placaVan + '\'' +
-                ", fkEmpresa=" + fkEmpresa +
+                ", fkEmpresa=" + fkEmpresa +  '\'' +
                 ", fkUsuario=" + usuario +
+                ", telefone=" + telefone +
                 '}';
     }
 }
